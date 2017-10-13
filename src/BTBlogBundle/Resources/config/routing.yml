@@ -1,0 +1,13 @@
+bt_blog_home:
+    path:     /
+    defaults: { _controller: BTBlogBundle:Default:index }
+
+bt_blog_mathieu:
+    path:     /mat
+    defaults: { _controller: BTBlogBundle:Default:mathieu }
+bt_blog_add:
+    path:     /add
+    defaults: { _controller: BTBlogBundle:Default:add }
+bt_blog_view:
+    path:     /view/{id}
+    defaults: { _controller: BTBlogBundle:Default:view }
