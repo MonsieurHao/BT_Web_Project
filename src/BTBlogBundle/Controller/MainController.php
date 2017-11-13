@@ -6,15 +6,15 @@ use BTBlogBundle\Entity\Post;
 use BTBlogBundle\Form\PostType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+class MainController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('BTBlogBundle:Default:index.html.twig');
+        return $this->render('index.html.twig');
     }
-    public function mathieuAction()
+    public function benjaminAction()
     {
-        return $this->render('BTBlogBundle:Default:tata.html.twig');
+        return $this->render('benjamin.html.twig');
     }
     public function addAction()
     {
@@ -24,7 +24,7 @@ class DefaultController extends Controller
         $form = $this
             ->get('form.factory')
             ->create(PostType::class,$post);
-        return $this->render('BTBlogBundle:Default:add.html.twig', array(
+        return $this->render('add.html.twig', array(
             'form' => $form->createView()
         ));
 
@@ -35,7 +35,7 @@ class DefaultController extends Controller
             ->getDoctrine()
             ->getRepository('BTBlogBundle:Post')
             ->find($id);
-        return $this->render('BTBlogBundle:Default:view.html.twig', array(
+        return $this->render('view.html.twig', array(
             'post' => $post
         ));
     }

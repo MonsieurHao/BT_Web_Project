@@ -1,13 +1,13 @@
 bt_blog_home:
     path:     /
-    defaults: { _controller: BTBlogBundle:Default:index }
+    defaults: { _controller: BTBlogBundle:Main:index }
 
-bt_blog_mathieu:
-    path:     /mat
-    defaults: { _controller: BTBlogBundle:Default:mathieu }
+bt_blog_benjamin:
+    path:     /benjamin
+    defaults: { _controller: BTBlogBundle:Main:benjamin }
 bt_blog_add:
     path:     /add
-    defaults: { _controller: BTBlogBundle:Default:add }
+    defaults: { _controller: BTBlogBundle:Main:add }
 bt_blog_view:
     path:     /view/{id}
-    defaults: { _controller: BTBlogBundle:Default:view }
+    defaults: { _controller: BTBlogBundle:Main:view }
