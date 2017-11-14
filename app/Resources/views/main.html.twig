@@ -25,27 +25,24 @@
         <h1 style="text-align: center">T&B</h1>
         <h3 style="text-align: center">Travel Together</h3>
     </div>
-    <hr>
     <nav class="nav nav-pills flex-column flex-sm-row nav-custom" >
         <a class="flex-sm-fill text-sm-center nav-link col-md-4" href="{{ path('bt_blog_home') }}">Home</a>
         <a class="flex-sm-fill text-sm-center nav-link col-md-4" href="{{ path('bt_blog_thomas') }}">Thomas</a>
         <a class="flex-sm-fill text-sm-center nav-link col-md-4" href="{{ path('bt_blog_benjamin') }}">Benjamin</a>
     </nav>
-    <hr>
+    <div id="content_footer">
+        <div id="content">
+                {% block body %}
+                {% endblock %}
+        </div>
+        <footer>
+                <p>T&B Travel Together © {{ 'now'|date('Y') }} </p>
 
-    <div id="content">
-            {% block body %}
-            {% endblock %}
+        </footer>
     </div>
-
 </div>
 
-<footer>
-    <div class="container-fluid">
-        <p>T&B Travel Together © {{ 'now'|date('Y') }} </p>
-    </div>
 
-</footer>
 
 {% block javascripts %}
     {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
