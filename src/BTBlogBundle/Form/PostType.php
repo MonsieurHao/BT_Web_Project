@@ -14,8 +14,10 @@ class PostType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('pseudo');
-        $builder->add('commentary')->add('save',SubmitType::class);
+        $builder
+            ->add('pseudo')
+            ->add('commentary')
+            ->add('save',SubmitType::class);
 
     }
     

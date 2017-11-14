@@ -3,6 +3,7 @@
 namespace BTBlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
@@ -31,7 +32,8 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="commentary", type="string", length=255)
+     * @ORM\Column(name="commentary", type="text", length=255)
+     * @Assert\NotBlank()
      */
     private $commentary;
 
@@ -39,6 +41,7 @@ class Post
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
+     * @Assert\DateTime()
      */
     private $date;
 
@@ -55,30 +58,6 @@ class Post
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set texte
-     *
-     * @param string $texte
-     *
-     * @return Post
-     */
-    public function setTexte($texte)
-    {
-        $this->texte = $texte;
-
-        return $this;
-    }
-
-    /**
-     * Get texte
-     *
-     * @return string
-     */
-    public function getTexte()
-    {
-        return $this->texte;
     }
 
     /**
@@ -102,7 +81,7 @@ class Post
      */
     public function getDate()
     {
-        return $this->date;
+        return $this->date->format('Y-m-D H:i:s');
     }
 
     /**
@@ -127,30 +106,6 @@ class Post
     public function getPseudo()
     {
         return $this->pseudo;
-    }
-
-    /**
-     * Set text
-     *
-     * @param string $text
-     *
-     * @return Post
-     */
-    public function setText($text)
-    {
-        $this->text = $text;
-
-        return $this;
-    }
-
-    /**
-     * Get text
-     *
-     * @return string
-     */
-    public function getText()
-    {
-        return $this->text;
     }
 
     /**
