@@ -21,12 +21,19 @@ class Post
      */
     private $id;
 
+
+    /**
+     *
+     * @ORM\Column(name="pseudo", type="string", length=50)
+     */
+    private $pseudo;
+
     /**
      * @var string
      *
-     * @ORM\Column(name="texte", type="string", length=255)
+     * @ORM\Column(name="commentary", type="string", length=255)
      */
-    private $texte;
+    private $commentary;
 
     /**
      * @var \DateTime
@@ -97,5 +104,76 @@ class Post
     {
         return $this->date;
     }
-}
 
+    /**
+     * Set pseudo
+     *
+     * @param string $pseudo
+     *
+     * @return Post
+     */
+    public function setPseudo($pseudo)
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    /**
+     * Get pseudo
+     *
+     * @return string
+     */
+    public function getPseudo()
+    {
+        return $this->pseudo;
+    }
+
+    /**
+     * Set text
+     *
+     * @param string $text
+     *
+     * @return Post
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
+
+        return $this;
+    }
+
+    /**
+     * Get text
+     *
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+    /**
+     * Set commentary
+     *
+     * @param string $commentary
+     *
+     * @return Post
+     */
+    public function setCommentary($commentary)
+    {
+        $this->commentary = $commentary;
+
+        return $this;
+    }
+
+    /**
+     * Get commentary
+     *
+     * @return string
+     */
+    public function getCommentary()
+    {
+        return $this->commentary;
+    }
+}
