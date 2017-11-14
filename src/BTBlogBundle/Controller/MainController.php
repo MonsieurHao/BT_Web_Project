@@ -16,6 +16,10 @@ class MainController extends Controller
     {
         return $this->render('benjamin.html.twig');
     }
+    public function thomasAction()
+    {
+        return $this->render('thomas.html.twig');
+    }
     public function addAction()
     {
 

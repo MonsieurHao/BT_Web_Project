@@ -1,6 +1,6 @@
 h1{
     color: #252578;
-    font-family: "Verdana";
+    font-family: "Magneto";
     font-weight: bold;
     font-size: 60px;
 }
@@ -12,28 +12,29 @@ h2{
 }
 
 h3{
-    color: darkgray;
+    color: #909090;
 }
-
+h4{
+    font-size: 20px;
+    color: #3747c5;
+    text-align: center;
+}
 hr{
-    background: #252578;
+    background: rgba(55, 71, 197, 0.84);
     border: 0;
     padding: 1px;
-    margin-top: 1px;
-    margin-right: 1px;
-    margin-left: 0;
-    margin-bottom: 0;
+    margin: 0;
 
 }
 
 body{
-    background-color: #d6e2ff;
+    background-color: #3747c5;
 }
 
 .container-fluid{
     background-color: #FFFFFF;
-    margin-left:  20px;
-    margin-right: 20px;
+    margin-left:  50px;
+    margin-right: 50px;
     padding-right: 0;
     padding-left:  0;
 }
@@ -52,8 +53,8 @@ body{
 }
 
 .nav-link:hover{
-    color: #6c8d9d;
-    background-color: #d1d3d9;
+    color: #b4b539;
+    background-color: #b5cbd9;
     text-decoration: none;
 
 }

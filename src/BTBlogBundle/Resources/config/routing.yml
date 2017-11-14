@@ -5,6 +5,9 @@ bt_blog_home:
 bt_blog_benjamin:
     path:     /benjamin
     defaults: { _controller: BTBlogBundle:Main:benjamin }
+bt_blog_thomas:
+    path:     /thomas
+    defaults: { _controller: BTBlogBundle:Main:thomas }
 bt_blog_add:
     path:     /add
     defaults: { _controller: BTBlogBundle:Main:add }
