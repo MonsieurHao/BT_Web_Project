@@ -3,6 +3,7 @@ h1{
     font-family: "Magneto";
     font-weight: bold;
     font-size: 60px;
+
 }
 
 h2{
@@ -13,48 +14,58 @@ h2{
 
 h3{
     color: #909090;
+    text-align: center;
 }
 h4{
     font-size: 20px;
-    color: #3747c5;
+    color: #252578;
     text-align: center;
 }
+
 hr{
-    background: rgba(55, 71, 197, 0.84);
+    background: #909090;
     border: 0;
-    padding: 1px;
+    padding: 2px;
     margin: 0;
 
 }
 
 body{
-    background-color: #3747c5;
+    background-color: #252578;
 }
+
+#header{
+    border-bottom: 2px #909090;
+    border-top: 2px #909090;
+    border-left: 2px #909090;
+    border-right: 2px #909090;
+
+}
+
 
 .container-fluid{
     background-color: #FFFFFF;
-    margin-left:  50px;
-    margin-right: 50px;
+    margin-left:  30px;
+    margin-right: 30px;
     padding-right: 0;
     padding-left:  0;
 }
 
 .nav{
     text-align: center;
-    background-color: #d6e2ff;
+    background-color: #252578;
 
 }
 
 .nav-link{
-    color: #6c8d9d;
+    color: #6bcfff;
     font-size: 20px;
-
 
 }
 
 .nav-link:hover{
     color: #b4b539;
-    background-color: #b5cbd9;
+    background-color: #252578;
     text-decoration: none;
 
 }
