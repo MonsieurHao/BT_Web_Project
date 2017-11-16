@@ -12,5 +12,5 @@ bt_blog_add:
     path:     /add
     defaults: { _controller: BTBlogBundle:Main:add }
 bt_blog_view:
-    path:     /view/{id}
-    defaults: { _controller: BTBlogBundle:Main:view }
+    path:     /view/{idMedia}
+    defaults: { _controller: BTBlogBundle:Main:commentary }

@@ -11,19 +11,19 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MainController extends Controller
 {
-    public function indexAction()
+    public function indexAction()   // render the Home page
     {
         return $this->render('index.html.twig');
     }
-    public function benjaminAction()
+    public function benjaminAction() // render benjamin's page
     {
         return $this->render('benjamin.html.twig');
     }
-    public function thomasAction()
+    public function thomasAction() // render thomas' page
     {
         return $this->render('thomas.html.twig');
     }
-    public function addAction(Request $request)
+    public function addAction(Request $request)      //Provide the add commentary, and put it on the Database
     {
 
         $post = new Post();
@@ -46,20 +46,26 @@ class MainController extends Controller
         return $this->render('add.html.twig',array('form'=>$form->createView()));
 
     }
-    public function viewAction($id)
+    public function commentaryAction($idMedia)  // Take commentary from an IdVideo and give back a object with all the commentaries to the view.
     {
+
         $post = $this
             ->getDoctrine()
             ->getManager()
             ->getRepository('BTBlogBundle:Post')
-            ->find($id);
+            ->findByidMedia($idMedia);
 
-        if (null == $post){
-            throw new NotFoundHttpException("This Commentary doesn't exist");
+
+
+        if (!$post){
+            throw new NotFoundHttpException("No commentaries for this video");
         }
 
-        return $this->render('view.html.twig', array(
-            'post' => $post
+
+        return $this->render('commentary.html.twig', array(
+            'commentaries' => $post
         ));
+
+
     }
 }

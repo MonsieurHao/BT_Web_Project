@@ -24,10 +24,20 @@ class Post
 
 
     /**
+     * @var string
+     *
      *
      * @ORM\Column(name="pseudo", type="string", length=50)
      */
     private $pseudo;
+
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idMedia", type="integer")
+     */
+    private $idMedia;
 
     /**
      * @var string
@@ -77,11 +87,11 @@ class Post
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return string
      */
     public function getDate()
     {
-        return $this->date->format('Y-m-D H:i:s');
+        return $this->date->format('Y-m-D H:i');
     }
 
     /**
@@ -130,5 +140,29 @@ class Post
     public function getCommentary()
     {
         return $this->commentary;
+    }
+
+    /**
+     * Set idMedia
+     *
+     * @param integer $idMedia
+     *
+     * @return Post
+     */
+    public function setIdMedia($idMedia)
+    {
+        $this->idMedia = $idMedia;
+
+        return $this;
+    }
+
+    /**
+     * Get idMedia
+     *
+     * @return integer
+     */
+    public function getIdMedia()
+    {
+        return $this->idMedia;
     }
 }
