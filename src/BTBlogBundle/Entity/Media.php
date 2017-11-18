@@ -12,6 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Media
 {
+
+    /**
+     * @ORM\ManyToOne(targetEntity="BTBlogBundle\Entity\Articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $articles;
+
     /**
      * @var int
      *
@@ -29,13 +36,6 @@ class Media
     private $date;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="IdVideo", type="integer")
-     */
-    private $idVideo;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="link", type="string", length=255)
@@ -48,7 +48,6 @@ class Media
      * @ORM\Column(name="type", type="string", length=255)
      */
     private $type;
-
 
     /**
      * Get id
@@ -81,32 +80,9 @@ class Media
      */
     public function getDate()
     {
-        return $this->date;
+        return $this->date->format('Y-m-D H:i');
     }
-
-    /**
-     * Set idVideo
-     *
-     * @param integer $idVideo
-     *
-     * @return Media
-     */
-    public function setIdVideo($idVideo)
-    {
-        $this->idVideo = $idVideo;
-
-        return $this;
-    }
-
-    /**
-     * Get idVideo
-     *
-     * @return int
-     */
-    public function getIdVideo()
-    {
-        return $this->idVideo;
-    }
+    
 
     /**
      * Set link
@@ -154,5 +130,29 @@ class Media
     public function getType()
     {
         return $this->type;
+    }
+    
+    /**
+     * Set articles
+     *
+     * @param \BTBlogBundle\Entity\Articles $articles
+     *
+     * @return Media
+     */
+    public function setArticles(\BTBlogBundle\Entity\Articles $articles)
+    {
+        $this->articles = $articles;
+
+        return $this;
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \BTBlogBundle\Entity\Articles
+     */
+    public function getArticles()
+    {
+        return $this->articles;
     }
 }

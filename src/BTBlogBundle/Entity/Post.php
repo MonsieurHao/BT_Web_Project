@@ -14,6 +14,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Post
 {
     /**
+     * @ORM\ManyToOne(targetEntity="BTBlogBundle\Entity\Articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $articles;
+
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -30,14 +37,6 @@ class Post
      * @ORM\Column(name="pseudo", type="string", length=50)
      */
     private $pseudo;
-
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="idMedia", type="integer")
-     */
-    private $idMedia;
 
     /**
      * @var string
@@ -142,27 +141,29 @@ class Post
         return $this->commentary;
     }
 
+    
+
     /**
-     * Set idMedia
+     * Set articles
      *
-     * @param integer $idMedia
+     * @param \BTBlogBundle\Entity\Articles $articles
      *
      * @return Post
      */
-    public function setIdMedia($idMedia)
+    public function setArticles(\BTBlogBundle\Entity\Articles $articles)
     {
-        $this->idMedia = $idMedia;
+        $this->articles = $articles;
 
         return $this;
     }
 
     /**
-     * Get idMedia
+     * Get articles
      *
-     * @return integer
+     * @return \BTBlogBundle\Entity\Articles
      */
-    public function getIdMedia()
+    public function getArticles()
     {
-        return $this->idMedia;
+        return $this->articles;
     }
 }

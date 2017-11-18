@@ -1,0 +1,15 @@
+<div>
+    {%  for commentary in commentaries %}
+        <div class="com">
+            This commentary were posted on {{ commentary.date}} <br>
+            By {{ commentary.pseudo }} : <br>
+            {{ commentary.commentary }}
+            <br>
+            <br>
+        </div>
+    {% else %} <div class="com">No commentary</div>
+
+    {% endfor %}
+</div>
+
+<a class="flex-sm-fill text-sm-center nav-link col-md-4" href="{{ path('bt_blog_addCommentary',{'id':article.id}) }}">Add</a>

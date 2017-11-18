@@ -1,0 +1,20 @@
+
+.com{
+    border: 10px;
+    border-bottom-color: #222222;
+}
+
+.article{
+    border: solid;
+    border-radius: 10px;
+    border-color: #940e5d;
+    text-decoration: none;
+
+}
+.article:hover{
+    color: #000000;
+}
+
+.article:visited{
+    color: #000000;
+}

@@ -1,6 +1,23 @@
 {% extends "layout.html.twig" %}
 {% block bundle_body %}
-Benjamin's Page
+
+    {%  stylesheets '@BTBlogBundle/Resources/public/css/article.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+    {% endstylesheets %}
+
+    <div>Benjamin's Page</div>
+
+    {%  for article in articles %}
+        <a href="{{ path('bt_blog_viewArticle',{'id':article.id}) }}">
+            <div class="article">
+                This article were posted on {{ article.date}} <br>
+                By {{ article.title }} : <br>
+                {{ article.content }}
+            </div>
+        </a>
+
+    {% else %} <div class="article">No article</div>
+    {% endfor %}
 
 
 {% endblock %}

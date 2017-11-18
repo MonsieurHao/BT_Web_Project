@@ -8,9 +8,9 @@ bt_blog_benjamin:
 bt_blog_thomas:
     path:     /thomas
     defaults: { _controller: BTBlogBundle:Main:thomas }
-bt_blog_add:
-    path:     /add
-    defaults: { _controller: BTBlogBundle:Main:add }
-bt_blog_view:
-    path:     /view/{idMedia}
-    defaults: { _controller: BTBlogBundle:Main:commentary }
+bt_blog_addCommentary:
+    path:     /addCom/{id}
+    defaults: { _controller: BTBlogBundle:Main:addCom }
+bt_blog_viewArticle:
+    path:     /viewArt/{id}
+    defaults: {_controller: BTBlogBundle:Main:viewArt}
