@@ -3,12 +3,15 @@
 namespace BTBlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Articles
  *
  * @ORM\Table(name="articles")
  * @ORM\Entity(repositoryClass="BTBlogBundle\Repository\ArticlesRepository")
+ * @UniqueEntity(fields="title", message="An article already exist with this title!")
  */
 class Articles
 {
@@ -24,7 +27,8 @@ class Articles
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=100)
+     * @ORM\Column(name="title", type="string", length=100, unique=true)
+     * @Assert\NotBlank
      */
     private $title;
 
@@ -32,6 +36,7 @@ class Articles
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
+     * @Assert\DateTime()
      * @ORM\OrderBy({"date" = "DESC"})
      */
     private $date;
@@ -40,6 +45,7 @@ class Articles
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     * @Assert\Type("string")
      */
     private $content;
 
@@ -47,6 +53,7 @@ class Articles
      * @var string
      *
      * @ORM\Column(name="postBy", type="string", length=1)
+     * @Assert\Length(min=1,max=1,minMessage="Please add a character!",maxMessage="Only one character!")
      */
     private $postBy;
 
@@ -106,7 +113,7 @@ class Articles
      */
     public function getDate()
     {
-        return $this->date->format('Y-m-D H:i');
+        return $this->date->format('H:i:s j-M-Y');
     }
 
     /**

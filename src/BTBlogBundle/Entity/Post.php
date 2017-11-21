@@ -16,6 +16,7 @@ class Post
     /**
      * @ORM\ManyToOne(targetEntity="BTBlogBundle\Entity\Articles")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
      */
     private $articles;
 
@@ -35,6 +36,7 @@ class Post
      *
      *
      * @ORM\Column(name="pseudo", type="string", length=50)
+     * @Assert\Type("string")
      */
     private $pseudo;
 
@@ -42,7 +44,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="commentary", type="text", length=255)
-     * @Assert\NotBlank()
+     * @Assert\Length(min=5, minMessage="This commentary must be 5 character long!" )
      */
     private $commentary;
 

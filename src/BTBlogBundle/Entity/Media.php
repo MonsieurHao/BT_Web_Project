@@ -3,6 +3,7 @@
 namespace BTBlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Media
@@ -16,6 +17,7 @@ class Media
     /**
      * @ORM\ManyToOne(targetEntity="BTBlogBundle\Entity\Articles")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
      */
     private $articles;
 
@@ -32,6 +34,7 @@ class Media
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
+     * @Assert\DateTime()
      */
     private $date;
 
@@ -39,13 +42,15 @@ class Media
      * @var string
      *
      * @ORM\Column(name="link", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $link;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="type", type="string", length=5)
+     * @Assert\Length(min=5,max=5,minMessage="Must be : video, music or image",maxMessage="Must be : video, music or image")
      */
     private $type;
 
