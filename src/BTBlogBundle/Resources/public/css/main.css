@@ -25,7 +25,11 @@ h4{
 
 
 body{
-    background-color: #c7774b;
+    background-color: #6596c7;
+
+}
+
+iframe{
 
 }
 
@@ -48,7 +52,7 @@ body{
 
 
 .container-fluid{
-    background-color: #c7774b;
+    background-color: #6596c7;
     margin-left:  30px;
     margin-right: 30px;
     padding-right: 0;
@@ -58,7 +62,7 @@ body{
 
 .nav{
     text-align: center;
-    background-color: #c7774b;
+    background-color: #6596c7;
 
 }
 
@@ -70,7 +74,7 @@ body{
 
 .nav-link:hover{
     color: #b4b539;
-    background-color: #c7774b;
+    background-color: #6596c7;
     text-decoration: none;
 
 }
@@ -88,11 +92,32 @@ body{
 .panel-default .panel-heading{
     border-color: #2b2a2b;
     background: #2b2a2b;
-    color: #fff;
+    color: #ffffff;
 }
 
 .panel-default .panel-body {
     color: #2b2a2b;
+}
+
+.article_content{
+    text-align: right;
+    font-size: small;
+}
+
+.title_date{
+    text-align: right;
+    font-size: smaller;
+    position: relative;
+}
+
+/*.well{
+    display: inline;
+}*/
+
+.article_content{
+    text-align: center;
+    margin: 50px;
+    overflow: auto;
 }
 
 
