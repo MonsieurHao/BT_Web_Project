@@ -32,6 +32,7 @@ class Articles
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
+     * @ORM\OrderBy({"date" = "DESC"})
      */
     private $date;
 

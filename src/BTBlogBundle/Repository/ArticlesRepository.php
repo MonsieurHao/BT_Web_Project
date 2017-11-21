@@ -2,6 +2,9 @@
 
 namespace BTBlogBundle\Repository;
 
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
+
 /**
  * ArticlesRepository
  *
@@ -10,4 +13,25 @@ namespace BTBlogBundle\Repository;
  */
 class ArticlesRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getLastArticlesPosted($postBy,$limit){
+
+
+        $qb=$this->createQueryBuilder('a');
+
+
+        $qb ->setParameter('postBy',$postBy)
+            ->where('a.postBy = :postBy')
+            ->orderBy('a.date','DESC');
+
+
+        $qb->setMaxResults($limit);
+
+
+        return $qb
+            ->getQuery()
+            ->getResult();
+
+    }
+
+
 }

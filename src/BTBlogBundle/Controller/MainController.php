@@ -14,7 +14,29 @@ class MainController extends Controller
 {
     public function indexAction()   // render the Home page
     {
-        return $this->render('index.html.twig');
+        $articlesB = $this
+            ->getDoctrine()
+            ->getRepository('BTBlogBundle:Articles')
+            -> getLastArticlesPosted("b",3);
+
+        $articlesT = $this
+            ->getDoctrine()
+            ->getRepository('BTBlogBundle:Articles')
+            -> getLastArticlesPosted("t",3);
+
+
+        $media = $this
+            ->getDoctrine()
+            ->getRepository('BTBlogBundle:Media')
+            ->findAll();
+
+
+
+
+        return $this->render('index.html.twig',array('articlesB'=>$articlesB,
+            'articlesT'=>$articlesT,
+            'medias' => $media)
+        );
     }
     public function benjaminAction() // render benjamin's page
     {
@@ -83,19 +105,11 @@ class MainController extends Controller
             ->getRepository('BTBlogBundle:Post')
             ->findByArticles($id);
 
-        if (!$post) {
-            throw new NotFoundHttpException("No commentaries for this article");
-        }
-
         $media = $this
             ->getDoctrine()
             ->getManager()
             ->getRepository('BTBlogBundle:Media')
             ->findByArticles($id);
-
-        if (!$media) {
-            throw new NotFoundHttpException("No commentaries for this article");
-        }
 
 
 

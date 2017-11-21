@@ -7,13 +7,36 @@
         <div class="col-lg-6 padding-int">
             <div class="panel panel-default" id="Thomas_home_panel">
                 <div class="panel-heading">Thomas</div>
-                <div class="panel-body">les musiques</div>
+                <div class="panel-body">les musiques
+                    {% for article in articlesT %}
+                        <div>{{ article.date }} {{ article.content }}</div>
+                        {% for media in medias %}
+                            {% if media.articles == article %}
+                                <iframe width="252" height="142" src="https://www.youtube.com/{{ media.link }}" frameborder="0" allowfullscreen></iframe>
+                                <br>
+                            {% endif %}
+                        {% endfor %}
+
+                    {% endfor %}
+                </div>
             </div>
         </div>
         <div class="col-lg-6 padding-int">
             <div class="panel panel-default" id="Benjamin_home_panel">
                 <div class="panel-heading">Benjamin</div>
-                <div class="panel-body">les vidéos</div>
+                <div class="panel-body">les vidéos
+                    {% for article in articlesB %}
+                        <div>{{ article.date }} {{ article.content }}</div>
+                        {% for media in medias %}
+                            {% if media.articles == article %}
+                                <iframe width="252" height="152" src="https://www.youtube.com/{{ media.link }}" frameborder="0" allowfullscreen></iframe>
+                                <br>
+                            {% endif %}
+                        {% endfor %}
+
+                    {% endfor %}
+
+                </div>
             </div>
         </div>
 
