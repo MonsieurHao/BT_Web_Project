@@ -1,4 +1,8 @@
 
+
+body{
+    background-color: #6596c7;
+}
 .com{
     border: 10px;
     border-bottom-color: #222222;
@@ -17,4 +21,17 @@
 
 .article:visited{
     color: #000000;
+}
+
+.container-fluid_articles{
+    background-color: #2db6c7;
+    border-radius: 10px;
+    border: solid;;
+    border-color: #64717b;
+}
+
+.well{
+    background-color: #64717b;
+    padding-left: 20px;
+    margin: 30px;
 }

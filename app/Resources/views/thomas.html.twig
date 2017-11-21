@@ -1,18 +1,30 @@
 {% extends "layout.html.twig" %}
 {% block bundle_body %}
-    <h4>Thomas' Page</h4>
-    <br>
 
-    {%  for article in articles %}
-        <div class="article" >
-            This article were posted on {{ article.date}} <br>
-            By {{ article.title }} : <br>
-            {{ article.content }}
-            <br>
-            <br>
-            <a href="{{ path('bt_blog_viewArticle',{'id':article.id}) }}"> More...</a>
+    {%  stylesheets '@BTBlogBundle/Resources/public/css/article.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+    {% endstylesheets %}
+
+    <div class="container-fluid bg-3 text-center">
+        <h4>Thomas' Page</h4>
+        <br>
+        <div class="container-fluid_articles">
+            <div class="row">
+                {%  for article in articles %}
+                    <div class="col-sm-4">
+                        <div class="well"><a href="{{ path('bt_blog_viewArticle',{'id':article.id}) }}"><h4>{{ article.title }}</h4></a><br>
+                            <p>This article were posted on {{ article.date}} <br>
+                            By {{ article.title }} : <br>
+                            {{ article.content }}
+                            <br>
+                            <br>
+                            </p></div>
+                    </div>
+                {% else %} <div class="article">No article</div>
+                {% endfor %}
+            </div>
         </div>
-    {% else %} <div class="article">No article</div>
-    {% endfor %}
+    </div>
+
 
 {% endblock %}

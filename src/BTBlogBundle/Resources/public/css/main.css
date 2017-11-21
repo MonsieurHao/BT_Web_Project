@@ -52,7 +52,7 @@ iframe{
 
 
 .container-fluid{
-    background-color: #6596c7;
+    background-color: transparent;
     margin-left:  30px;
     margin-right: 30px;
     padding-right: 0;
@@ -110,9 +110,6 @@ iframe{
     position: relative;
 }
 
-/*.well{
-    display: inline;
-}*/
 
 .article_content{
     text-align: center;
