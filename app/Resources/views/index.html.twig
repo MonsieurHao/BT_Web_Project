@@ -6,34 +6,41 @@
     <div class="panel-group padding-gp">
         <div class="col-lg-6 padding-int">
             <div class="panel panel-default" id="Thomas_home_panel">
-                <div class="panel-heading">Thomas</div>
-                <div class="panel-body">les musiques
+                <div class="panel-heading"><a href="#" data-toggle="tooltip" data-placement="right" title="Thomas est étudiant à l'ESIEA.
+                Il aime grandement la musique et lui arrive de créer quelques morceaux quand l'envie lui prend.
+                 Il est également passionné par le Japon et toute sa culture.">Thomas</a></div>
+                <div class="panel-body">Musiques crées ou conseillées par Thomas
+                    <br>
                     {% for article in articlesT %}
-                        <div>{{ article.date }} {{ article.content }}</div>
+                        <div class="title_date"><a>{{ article.title }}</a> {{ article.date }}</div>
+                        <div class="well">
                         {% for media in medias %}
                             {% if media.articles == article %}
-                                <iframe width="252" height="142" src="https://www.youtube.com/{{ media.link }}" frameborder="0" allowfullscreen></iframe>
-                                <br>
+                               <iframe style="display: block; margin: auto;" width="300" height="170" src="https://www.youtube.com/{{ media.link }}" frameborder="0" allowfullscreen></iframe>
                             {% endif %}
                         {% endfor %}
-
+                            <div class="article_content">{{ article.content }}</div>
+                        </div>
                     {% endfor %}
                 </div>
             </div>
         </div>
         <div class="col-lg-6 padding-int">
             <div class="panel panel-default" id="Benjamin_home_panel">
-                <div class="panel-heading">Benjamin</div>
-                <div class="panel-body">les vidéos
+                <div class="panel-heading"><a href="#" data-toggle="tooltip" data-placement="right" title="Benjamin est étudiant à l'ESIEA.
+                Il aime faire du montage vidéo avec des films de ses voyages autour du monde.">Benjamin</a></div>
+                <div class="panel-body">Montages vidéos réalisés par Benjamin
+                    <br>
                     {% for article in articlesB %}
-                        <div>{{ article.date }} {{ article.content }}</div>
+                        <div class="title_date"><a>{{ article.title }}</a> {{ article.date }}</div>
+                        <div class="well">
                         {% for media in medias %}
                             {% if media.articles == article %}
-                                <iframe width="252" height="152" src="https://www.youtube.com/{{ media.link }}" frameborder="0" allowfullscreen></iframe>
-                                <br>
+                                <iframe style="display: block; margin: auto;" width="300" height="170" src="https://www.youtube.com/{{ media.link }}" frameborder="0" allowfullscreen></iframe>
                             {% endif %}
                         {% endfor %}
-
+                            <div class="article_content">{{ article.content }}</div>
+                        </div>
                     {% endfor %}
 
                 </div>

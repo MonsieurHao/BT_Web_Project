@@ -36,6 +36,7 @@
                 {% endblock %}
         </div>
         <footer>
+                <br>
                 <p>T&B Travel Together © {{ 'now'|date('Y') }} </p>
 
         </footer>
@@ -48,6 +49,11 @@
     {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){                         {# Script permettant de placer des "hovers" (=Tooltip en bootstrap) #}
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 {% endblock %}
 
 </body>
