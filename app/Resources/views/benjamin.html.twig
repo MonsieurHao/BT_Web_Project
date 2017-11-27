@@ -5,19 +5,26 @@
     <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
     {% endstylesheets %}
 
-    <div>Benjamin's Page</div>
-
-    {%  for article in articles %}
-        <a href="{{ path('bt_blog_viewArticle',{'id':article.id}) }}">
-            <div class="article">
-                This article were posted on {{ article.date}} <br>
-                By {{ article.title }} : <br>
-                {{ article.content }}
+    <div class="container-fluid bg-3 text-center">
+        <h4>Benjamin's Page</h4>
+        <br>
+        <div class="container-fluid_articles">
+            <div class="row">
+                {%  for article in articles %}
+                    <div class="col-sm-4">
+                        <div class="well"><a href="{{ path('bt_blog_viewArticle',{'id':article.id}) }}"><h5>{{ article.title }}</h5></a><br>
+                            <p>This article were posted on {{ article.date}} <br>
+                                By {{ article.title }} : <br>
+                                {{ article.content }}
+                                <br>
+                                <br>
+                            </p></div>
+                    </div>
+                {% else %} <div class="article">No article</div>
+                {% endfor %}
             </div>
-        </a>
-
-    {% else %} <div class="article">No article</div>
-    {% endfor %}
+        </div>
+    </div>
 
 
 {% endblock %}
