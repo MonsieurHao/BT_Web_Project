@@ -12,7 +12,7 @@
                 <div class="panel-body">Musiques crées ou conseillées par Thomas
                     <br>
                     {% for article in articlesT %}
-                        <div class="title_date"><a>{{ article.title }}</a> {{ article.date }}</div>
+                        <div class="title_date"><a href={{ path('bt_blog_viewArticle',{'id':article.id}) }}>{{ article.title }}</a> {{ article.date }}</div>
                         <div class="well">
                         {% for media in medias %}
                             {% if media.articles == article %}
@@ -32,7 +32,7 @@
                 <div class="panel-body">Montages vidéos réalisés par Benjamin
                     <br>
                     {% for article in articlesB %}
-                        <div class="title_date"><a>{{ article.title }}</a> {{ article.date }}</div>
+                        <div class="title_date"><a href={{ path('bt_blog_viewArticle',{'id':article.id}) }}>{{ article.title }}</a> {{ article.date }}</div>
                         <div class="well">
                         {% for media in medias %}
                             {% if media.articles == article %}
