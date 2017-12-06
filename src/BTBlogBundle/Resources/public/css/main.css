@@ -29,9 +29,6 @@ body{
 
 }
 
-iframe{
-
-}
 
 #header{
     border-style: solid;
@@ -50,6 +47,13 @@ iframe{
 
 }
 
+#log_display{
+    margin: 10px;
+}
+
+#log_display .panel-body{
+    margin: 2px;
+}
 
 .container-fluid{
     background-color: transparent;
@@ -86,10 +90,12 @@ iframe{
 .padding-gp{
     padding-right: 10px;
     padding-left: 10px;
+    padding: 10px;
 }
 
 .panel-default{
     border-color: #2b2a2b;
+
 }
 
 .panel-default .panel-heading{
@@ -121,15 +127,5 @@ iframe{
 }
 
 
-/* To be modified
-.padding-int{
-    padding: 2px;
-}
-#Thomas_home_panel{
-    margin-left: 10px;
-}
-#Benjamin_home_panel{
-    margin-right: 10px;
-}
-*/
+
 

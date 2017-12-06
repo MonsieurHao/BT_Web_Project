@@ -36,11 +36,23 @@
                 {% endblock %}
         </div>
 
-        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-            {{ app.user.username }} - <a href="{{ path('fos_user_security_logout') }}">Log out</a>
-        {% else %}
-            <a href="{{ path('fos_user_security_login') }}">Log in</a>
-        {% endif %}
+        <div id="log_display" class="panel panel-default">
+            <div class="panel panel-heading">
+                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                    {{ app.user.username }}
+                {% else %}
+                    Please register below.
+                {% endif %}
+            </div>
+            <div class="panel panel-body">
+                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                     <a href="{{ path('fos_user_security_logout') }}">Log out</a>
+                {% else %}
+                    <a href="{{ path('fos_user_security_login') }}">Log in</a>
+                {% endif %}
+            </div>
+
+        </div>
 
 
 
