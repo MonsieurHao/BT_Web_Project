@@ -16,7 +16,7 @@
                         <div class="well">
                         {% for media in medias %}
                             {% if media.articles == article %}
-                               <iframe style="display: block; margin: auto;" width="300" height="170" src="https://www.youtube.com/{{ media.link }}" frameborder="0" allowfullscreen></iframe>
+                               <div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" style="display: block; margin: auto;" width="300" height="170" src="https://www.youtube.com/{{ media.link }}" frameborder="0" allowfullscreen></iframe></div>
                             {% endif %}
                         {% endfor %}
                             <div class="article_content">{{ article.content }}</div>

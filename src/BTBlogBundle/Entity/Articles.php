@@ -21,7 +21,7 @@ class Articles
     private $medias;
 
     /**
-     *@ORM\OneToMany(targetEntity="BTBlogBundle\Entity\Posrt", mappedBy="articles")
+     *@ORM\OneToMany(targetEntity="BTBlogBundle\Entity\Post", mappedBy="articles")
      */
     private $posts;
 
@@ -189,6 +189,8 @@ class Articles
     {
         $this->medias[] = $media;
 
+        $media->setArticles($this);
+
         return $this;
     }
 
@@ -215,13 +217,15 @@ class Articles
     /**
      * Add post
      *
-     * @param \BTBlogBundle\Entity\Posrt $post
+     * @param \BTBlogBundle\Entity\Post $post
      *
      * @return Articles
      */
-    public function addPost(\BTBlogBundle\Entity\Posrt $post)
+    public function addPost(\BTBlogBundle\Entity\Post $post)
     {
         $this->posts[] = $post;
+
+        $post->setArticles($this);
 
         return $this;
     }
@@ -229,9 +233,9 @@ class Articles
     /**
      * Remove post
      *
-     * @param \BTBlogBundle\Entity\Posrt $post
+     * @param \BTBlogBundle\Entity\Post $post
      */
-    public function removePost(\BTBlogBundle\Entity\Posrt $post)
+    public function removePost(\BTBlogBundle\Entity\Post $post)
     {
         $this->posts->removeElement($post);
     }

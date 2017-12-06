@@ -11,6 +11,12 @@ bt_blog_thomas:
 bt_blog_addCommentary:
     path:     /addCom/{id}
     defaults: { _controller: BTBlogBundle:Main:addCom }
+bt_blog_rmCommentary:
+    path:     /rmCom/{id}
+    defaults: { _controller: BTBlogBundle:Main:rmCom }
+bt_blog_updCommentary:
+    path:     /updCom/{id}/{idPost}
+    defaults: { _controller: BTBlogBundle:Main:updCom }
 bt_blog_viewArticle:
     path:     /viewArt/{id}
     defaults: {_controller: BTBlogBundle:Main:viewArt}
@@ -20,3 +26,6 @@ bt_blog_addArticle:
 bt_blog_rmArticle:
     path:     /rmArt/{id}
     defaults: {_controller: BTBlogBundle:Main:rmArt}
+bt_blog_updArticle:
+    path:     /updArt/{id}
+    defaults: {_controller: BTBlogBundle:Main:updArt}

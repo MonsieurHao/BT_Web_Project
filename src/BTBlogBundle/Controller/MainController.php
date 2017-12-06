@@ -120,6 +120,89 @@ class MainController extends Controller
 
     }
 
+    public function rmComAction(Request $request, $id){
+        $comment = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BTBlogBundle:Post')
+            ->find($id);
+
+        if ($comment) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($comment);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'Comment were remove');
+            return $this->redirect($this->generateUrl('bt_blog_viewArticle',array('id'=>$comment->getArticles()->getId())));
+        }
+        else{
+
+            $request->getSession()->getFlashBag()->add('notice', 'This comment does not exist');
+            return $this->redirect($this->generateUrl('bt_blog_home'));
+        }
+
+
+    }
+
+    public function updComAction(Request $request, $id,$idPost)
+    {
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $post = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BTBlogBundle:Post')
+            ->find($idPost);
+
+        $article = $this
+            ->getDoctrine()
+            ->getRepository('BTBlogBundle:Articles')
+            ->find($id);
+
+        $post
+            ->setArticles($article)
+            ->setPseudo($user->getUsername());
+
+        $media = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BTBlogBundle:Media')
+            ->findByArticles($id);
+
+
+        $nForm = $this
+            ->get('form.factory')
+            ->create(PostType::class, $post);
+
+        $com = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BTBlogBundle:Post')
+            ->findByArticles($id);
+
+
+        if ($nForm->handleRequest($request)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($post);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'Commentary were added');
+
+            return $this->redirect($this->generateUrl('bt_blog_viewArticle', array('id' => $article->getId())));
+        } else {
+            return $this->render('viewArticle.html.twig',
+                array(
+                    'form' => $nForm->createView(),
+                    'article' => $article,
+                    'commentaries' => $com,
+                    'media' => $media
+            ));
+
+
+        }
+    }
+
 
     public function viewArtAction($id)
     {
@@ -157,28 +240,7 @@ class MainController extends Controller
 
 
 
-    public function rmComAction(Request $request, $id){
-        $comment = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('BTBlogBundle:Post')
-            ->find($id);
 
-        if ($comment) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($comment);
-            $em->flush();
-
-            $request->getSession()->getFlashBag()->add('notice', 'Comment were remove');
-        }
-        else{
-
-            $request->getSession()->getFlashBag()->add('notice', 'This comment does not exist');
-            return $this->redirect($this->generateUrl('bt_blog_viewArticle',array('id'=>$article->getId())));
-        }
-
-
-    }
 
     /**
      * @Security("is_granted('ROLE_AUTHOR')")
@@ -230,6 +292,31 @@ class MainController extends Controller
         }
 
         return $this->redirect($this->generateUrl('bt_blog_home'));
+    }
+
+    public function updArtAction(Request $request, $id){
+
+        $article = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BTBlogBundle:Articles')
+            ->find($id);
+
+        $formArt = $this
+            ->get('form.factory')
+            ->create(ArticlesType::class,$article);
+
+        if($formArt->handleRequest($request)->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($article);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice','Article were added');
+
+            return $this->redirect($this->generateUrl('bt_blog_viewArticle',array('id'=>$article->getId())));
+        }
+
+        return $this->render('BTBlogBundle::addArticle.html.twig',array('article'=>$formArt->createView()));
     }
 
 }
