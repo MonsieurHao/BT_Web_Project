@@ -17,3 +17,6 @@ bt_blog_viewArticle:
 bt_blog_addArticle:
     path:     /addArt
     defaults: {_controller: BTBlogBundle:Main:addArt}
+bt_blog_rmArticle:
+    path:     /rmArt/{id}
+    defaults: {_controller: BTBlogBundle:Main:rmArt}

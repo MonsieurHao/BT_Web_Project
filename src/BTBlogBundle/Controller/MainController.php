@@ -40,6 +40,8 @@ class MainController extends Controller
             'medias' => $media)
         );
     }
+
+
     public function benjaminAction() // render benjamin's page
     {
         $articles = $this
@@ -49,6 +51,8 @@ class MainController extends Controller
 
         return $this->render('benjamin.html.twig',array('articles'=> $articles));
     }
+
+
     public function thomasAction() // render thomas' page
     {
         $articles = $this
@@ -116,6 +120,7 @@ class MainController extends Controller
 
     }
 
+
     public function viewArtAction($id)
     {
 
@@ -152,6 +157,28 @@ class MainController extends Controller
 
 
 
+    public function rmComAction(Request $request, $id){
+        $comment = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BTBlogBundle:Post')
+            ->find($id);
+
+        if ($comment) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($comment);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'Comment were remove');
+        }
+        else{
+
+            $request->getSession()->getFlashBag()->add('notice', 'This comment does not exist');
+            return $this->redirect($this->generateUrl('bt_blog_viewArticle',array('id'=>$article->getId())));
+        }
+
+
+    }
 
     /**
      * @Security("is_granted('ROLE_AUTHOR')")
@@ -180,7 +207,30 @@ class MainController extends Controller
     }
 
 
+    public function rmArtAction(Request $request, $id)
+    {
 
+        $article = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BTBlogBundle:Articles')
+            ->find($id);
+
+        if ($article) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($article);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'Article were remove');
+        }
+        else{
+
+            $request->getSession()->getFlashBag()->add('notice', 'This article does not exist');
+            return $this->redirect($this->generateUrl('bt_blog_home'));
+        }
+
+        return $this->redirect($this->generateUrl('bt_blog_home'));
+    }
 
 }
 

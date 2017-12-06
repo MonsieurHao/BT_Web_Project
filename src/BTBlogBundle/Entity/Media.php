@@ -15,8 +15,8 @@ class Media
 {
 
     /**
-     * @ORM\ManyToOne(targetEntity="BTBlogBundle\Entity\Articles")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="BTBlogBundle\Entity\Articles", inversedBy="Medias")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      * @Assert\Valid()
      */
     private $articles;

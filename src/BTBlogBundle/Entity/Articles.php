@@ -16,6 +16,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Articles
 {
     /**
+     * @ORM\OneToMany(targetEntity="BTBlogBundle\Entity\Media", mappedBy="articles")
+     */
+    private $medias;
+
+    /**
+     *@ORM\OneToMany(targetEntity="BTBlogBundle\Entity\Posrt", mappedBy="articles")
+     */
+    private $posts;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -166,5 +176,73 @@ class Articles
     public function getPostBy()
     {
         return $this->postBy;
+    }
+
+    /**
+     * Add media
+     *
+     * @param \BTBlogBundle\Entity\Media $media
+     *
+     * @return Articles
+     */
+    public function addMedia(\BTBlogBundle\Entity\Media $media)
+    {
+        $this->medias[] = $media;
+
+        return $this;
+    }
+
+    /**
+     * Remove media
+     *
+     * @param \BTBlogBundle\Entity\Media $media
+     */
+    public function removeMedia(\BTBlogBundle\Entity\Media $media)
+    {
+        $this->medias->removeElement($media);
+    }
+
+    /**
+     * Get medias
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMedias()
+    {
+        return $this->medias;
+    }
+
+    /**
+     * Add post
+     *
+     * @param \BTBlogBundle\Entity\Posrt $post
+     *
+     * @return Articles
+     */
+    public function addPost(\BTBlogBundle\Entity\Posrt $post)
+    {
+        $this->posts[] = $post;
+
+        return $this;
+    }
+
+    /**
+     * Remove post
+     *
+     * @param \BTBlogBundle\Entity\Posrt $post
+     */
+    public function removePost(\BTBlogBundle\Entity\Posrt $post)
+    {
+        $this->posts->removeElement($post);
+    }
+
+    /**
+     * Get posts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPosts()
+    {
+        return $this->posts;
     }
 }

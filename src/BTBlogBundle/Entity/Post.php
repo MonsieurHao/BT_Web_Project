@@ -14,8 +14,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Post
 {
     /**
-     * @ORM\ManyToOne(targetEntity="BTBlogBundle\Entity\Articles")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="BTBlogBundle\Entity\Articles", inversedBy="Posts")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      * @Assert\Valid()
      */
     private $articles;
