@@ -14,6 +14,13 @@ hr{
     margin-right: 50px;
 }
 
+#delButton{
+   margin-right: 50px;
+}
+#com_button{
+    margin-top: 70px;
+}
+
 .com{
     border: 10px;
     border-bottom-color: #222222;
@@ -57,9 +64,6 @@ hr{
     font-family: "Dubai Medium";
 }
 
-.article_page_content{
-
-}
 
 .col-sm-8{
     padding: 70px;
