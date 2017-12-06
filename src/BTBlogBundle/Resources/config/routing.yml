@@ -14,3 +14,6 @@ bt_blog_addCommentary:
 bt_blog_viewArticle:
     path:     /viewArt/{id}
     defaults: {_controller: BTBlogBundle:Main:viewArt}
+bt_blog_addArticle:
+    path:     /addArt
+    defaults: {_controller: BTBlogBundle:Main:addArt}

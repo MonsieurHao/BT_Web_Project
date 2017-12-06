@@ -3,11 +3,10 @@
 namespace BTBlogBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PostType extends AbstractType
+class MediaType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -15,10 +14,10 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('save',SubmitType::class)
-            ->add('commentary');
-
-
+            ->add('link')
+            ->add('type')
+            ->add('articles')
+            ->add('save',SubmitType::class);
     }
     
     /**
@@ -27,7 +26,7 @@ class PostType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BTBlogBundle\Entity\Post'
+            'data_class' => 'BTBlogBundle\Entity\Media'
         ));
     }
 
@@ -36,7 +35,7 @@ class PostType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'btblogbundle_post';
+        return 'btblogbundle_media';
     }
 
 

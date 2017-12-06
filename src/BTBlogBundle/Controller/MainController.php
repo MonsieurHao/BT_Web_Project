@@ -2,11 +2,13 @@
 namespace BTBlogBundle\Controller;
 
 use BTBlogBundle\Entity\Post;
+use BTBlogBundle\Form\ArticlesType;
 use BTBlogBundle\Form\PostType;
 use BTBlogBundle\Entity\Articles;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
 
@@ -56,8 +58,15 @@ class MainController extends Controller
 
         return $this->render('thomas.html.twig',array('articles'=> $articles));
     }
+
+
+    /**
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     */
     public function addComAction(Request $request, $id)      //Provide the add commentary, and put it on the Database
     {
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $post = new Post();
         $article = $this
@@ -65,11 +74,26 @@ class MainController extends Controller
             ->getRepository('BTBlogBundle:Articles')
             ->find($id);
 
-        $post->setArticles($article);
+        $post
+            ->setArticles($article)
+            ->setPseudo($user->getUsername());
+
+        $media = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BTBlogBundle:Media')
+            ->findByArticles($id);
+
 
         $form = $this
             ->get('form.factory')
             ->create(PostType::class,$post);
+
+        $com = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BTBlogBundle:Post')
+            ->findByArticles($id);
 
 
         if($form->handleRequest($request)->isValid()){
@@ -77,12 +101,18 @@ class MainController extends Controller
             $em->persist($post);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('notice','Annonce bien enregistrée.');
+            $request->getSession()->getFlashBag()->add('notice','Commentary were added');
 
             return $this->redirect($this->generateUrl('bt_blog_viewArticle',array('id'=>$article->getId())));
         }
 
-        return $this->render('addCommentary.html.twig',array('form'=>$form->createView()));
+        return $this->render('viewArticle.html.twig',
+            array(
+                'form'=>$form->createView(),
+                'article' => $article,
+                'commentaries' => $com,
+                'media' => $media
+            ));
 
     }
 
@@ -119,4 +149,40 @@ class MainController extends Controller
             'media' => $media
         ));
     }
+
+
+
+
+    /**
+     * @Security("is_granted('ROLE_AUTHOR')")
+     */
+    public function addArtAction(Request $request){
+
+        $article = new Articles();
+        $formArt = $this
+            ->get('form.factory')
+            ->create(ArticlesType::class,$article);
+
+        if($formArt->handleRequest($request)->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($article);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice','Article were added');
+
+            return $this->redirect($this->generateUrl('bt_blog_viewArticle',array('id'=>$article->getId())));
+        }
+
+        return $this->render('BTBlogBundle::addArticle.html.twig',array('article'=>$formArt->createView()));
+
+
+
+    }
+
+
+
+
 }
+
+
+

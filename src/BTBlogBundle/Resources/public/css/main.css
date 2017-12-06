@@ -79,10 +79,13 @@ iframe{
 
 }
 
+.padding-int{
+    margin-bottom: 10px;
+}
+
 .padding-gp{
     padding-right: 10px;
     padding-left: 10px;
-
 }
 
 .panel-default{

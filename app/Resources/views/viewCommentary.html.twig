@@ -1,15 +1,25 @@
 
-<a href="{{ path('bt_blog_addCommentary',{'id':article.id}) }}" class="btn btn-info btn-lg" role="button">Comment</a><br>
+
+{% if form is not defined %}
+
+
+        <a href="{{ path('bt_blog_addCommentary',{'id':article.id}) }}" class="btn btn-info btn-lg" role="button">Comment</a><br>
+
+{% endif %}
 
 <br>
 
 <div>
+    {% if form is defined %}
+        {{ form(form) }}
+    {% endif %}
+
     {%  for commentary in commentaries %}
         <div class="com">
             This commentary were posted on {{ commentary.date}} <br>
             By {{ commentary.pseudo }} : <br>
             {{ commentary.commentary }}
-            <hr />
+            <hr>
             <br>
         </div>
     {% else %} <div class="com">No commentary</div>
