@@ -37,7 +37,7 @@ class MainController extends Controller
 
 
 
-        return $this->render('BTBlogBundle::index.html.twig',array(
+        return $this->render('@BTBlogBundle/Resources/Views/index.html.twig',array(
             'articlesB'=>$articlesB,
             'articlesT'=>$articlesT,
             'medias' => $media)
@@ -52,7 +52,7 @@ class MainController extends Controller
             ->getRepository('BTBlogBundle:Articles')
             ->findByPostBy("b");
 
-        return $this->render('BTBlogBundle::benjamin.html.twig',array('articles'=> $articles));
+        return $this->render('@BTBlogBundle/Resources/Views/benjamin.html.twig',array('articles'=> $articles));
     }
 
 
@@ -63,7 +63,7 @@ class MainController extends Controller
             ->getRepository('BTBlogBundle:Articles')
             ->findByPostBy("t");
 
-        return $this->render('BTBlogBundle::thomas.html.twig',array('articles'=> $articles));
+        return $this->render('@BTBlogBundle/Resources/Views/thomas.html.twig',array('articles'=> $articles));
     }
 
 
@@ -113,7 +113,7 @@ class MainController extends Controller
             return $this->redirect($this->generateUrl('bt_blog_viewArticle',array('id'=>$article->getId())));
         }
 
-        return $this->render('BTBlogBundle::viewArticle.html.twig',
+        return $this->render('@BTBlogBundle/Resources/Views/viewArticle.html.twig',
             array(
                 'form'=>$form->createView(),
                 'article' => $article,
@@ -201,7 +201,7 @@ class MainController extends Controller
 
             return $this->redirect($this->generateUrl('bt_blog_viewArticle', array('id' => $article->getId())));
         } else {
-            return $this->render('BTBlogBundle::viewArticle.html.twig',
+            return $this->render('@BTBlogBundle/Resources/Views/viewArticle.html.twig',
                 array(
                     'form' => $nForm->createView(),
                     'article' => $article,
@@ -241,7 +241,7 @@ class MainController extends Controller
 
 
 
-        return $this->render('BTBlogBundle::viewArticle.html.twig', array(
+        return $this->render('@BTBlogBundle/Resources/Views/viewArticle.html.twig', array(
             'article' => $article,
             'commentaries' => $post,
             'media' => $media
@@ -274,7 +274,7 @@ class MainController extends Controller
             return $this->redirect($this->generateUrl('bt_blog_viewArticle',array('id'=>$article->getId())));
         }
 
-        return $this->render('BTBlogBundle::addArticle.html.twig',array('article'=>$formArt->createView()));
+        return $this->render('@BTBlogBundle/Resources/Views/addArticle.html.twig',array('article'=>$formArt->createView()));
 
 
     }
@@ -332,7 +332,7 @@ class MainController extends Controller
             return $this->redirect($this->generateUrl('bt_blog_viewArticle',array('id'=>$article->getId())));
         }
 
-        return $this->render('BTBlogBundle::addArticle.html.twig',array('article'=>$formArt->createView()));
+        return $this->render('@BTBlogBundle/Resources/Views/addArticle.html.twig',array('article'=>$formArt->createView()));
     }
 
     /**
@@ -365,7 +365,7 @@ class MainController extends Controller
             return $this->redirect($this->generateUrl('bt_blog_viewArticle',array('id'=>$id)));
         }
 
-        return $this->render('BTBlogBundle::addArticle.html.twig',array('article'=>$formMed->createView()));
+        return $this->render('@BTBlogBundle/Resources/Views/addArticle.html.twig',array('article'=>$formMed->createView()));
 
     }
 }
