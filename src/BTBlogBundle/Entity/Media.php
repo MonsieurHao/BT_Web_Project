@@ -15,7 +15,7 @@ class Media
 {
 
     /**
-     * @ORM\ManyToOne(targetEntity="BTBlogBundle\Entity\Articles", inversedBy="Medias")
+     * @ORM\ManyToOne(targetEntity="BTBlogBundle\Entity\Articles", inversedBy="Medias", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      * @Assert\Valid()
      */
@@ -53,6 +53,12 @@ class Media
      * @Assert\Length(min=5,max=5,minMessage="Must be : video, music or image",maxMessage="Must be : video, music or image")
      */
     private $type;
+
+
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+    }
 
     /**
      * Get id

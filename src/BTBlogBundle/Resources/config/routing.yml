@@ -29,3 +29,6 @@ bt_blog_rmArticle:
 bt_blog_updArticle:
     path:     /updArt/{id}
     defaults: {_controller: BTBlogBundle:Main:updArt}
+bt_blog_addMedia:
+    path:     /addMed/{id}
+    defaults: {_controller: BTBlogBundle:Main:addMed}

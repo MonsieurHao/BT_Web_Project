@@ -11,17 +11,21 @@
                  Il est également passionné par le Japon et toute sa culture.">Thomas</a></div>
                 <div class="panel-body">Musiques crées ou conseillées par Thomas
                     <br>
-                    {% for article in articlesT %}
-                        <div class="title_date"><a href={{ path('bt_blog_viewArticle',{'id':article.id}) }}>{{ article.title }}</a> {{ article.date }}</div>
-                        <div class="well">
-                        {% for media in medias %}
-                            {% if media.articles == article %}
-                               <div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" style="display: block; margin: auto;" width="300" height="170" src="https://www.youtube.com/{{ media.link }}" frameborder="0" allowfullscreen></iframe></div>
-                            {% endif %}
+                        {% for article in articlesT %}
+                            <div class="title_date"><a href={{ path('bt_blog_viewArticle',{'id':article.id}) }}>{{ article.title }}</a> {{ article.date }}</div>
+                            <div class="well col-md-12">
+                                {% if medias is not empty %}
+                                    {% for media in medias %}
+                                        {% if media.articles is same as(article) %}
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/{{ media.link }}" allowfullscreen></iframe>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                                <div class="article_content">{{ article.content }}</div>
+                            </div>
                         {% endfor %}
-                            <div class="article_content">{{ article.content }}</div>
-                        </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -34,16 +38,20 @@
                     {% for article in articlesB %}
                         <div class="title_date"><a href={{ path('bt_blog_viewArticle',{'id':article.id}) }}>{{ article.title }}</a> {{ article.date }}</div>
                         <div class="well">
-                        {% for media in medias %}
-                            {% if media.articles == article %}
-                                <iframe style="display: block; margin: auto;" width="300" height="170" src="https://www.youtube.com/{{ media.link }}" frameborder="0" allowfullscreen></iframe>
-                            {% endif %}
-                        {% endfor %}
+                                {% if medias is not empty %}
+                                    {% for media in medias %}
+                                        {% if media.articles is same as(article) %}
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/{{ media.link }}" allowfullscreen></iframe>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+
                             <div class="article_content">{{ article.content }}</div>
                         </div>
                     {% endfor %}
                 </div>
-            </div>
         </div>
     </div>
 </div>

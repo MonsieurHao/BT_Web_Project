@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Articles
 {
     /**
-     * @ORM\OneToMany(targetEntity="BTBlogBundle\Entity\Media", mappedBy="articles")
+     * @ORM\OneToMany(targetEntity="BTBlogBundle\Entity\Media", mappedBy="articles", cascade={"persist"})
      */
     private $medias;
 

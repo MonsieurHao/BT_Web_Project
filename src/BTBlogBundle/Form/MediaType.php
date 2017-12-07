@@ -5,6 +5,7 @@ namespace BTBlogBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class MediaType extends AbstractType
 {
@@ -16,7 +17,6 @@ class MediaType extends AbstractType
         $builder
             ->add('link')
             ->add('type')
-            ->add('articles')
             ->add('save',SubmitType::class);
     }
     

@@ -1,8 +1,10 @@
 <?php
 namespace BTBlogBundle\Controller;
 
+use BTBlogBundle\Entity\Media;
 use BTBlogBundle\Entity\Post;
 use BTBlogBundle\Form\ArticlesType;
+use BTBlogBundle\Form\MediaType;
 use BTBlogBundle\Form\PostType;
 use BTBlogBundle\Entity\Articles;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -35,7 +37,8 @@ class MainController extends Controller
 
 
 
-        return $this->render('index.html.twig',array('articlesB'=>$articlesB,
+        return $this->render('BTBlogBundle::index.html.twig',array(
+            'articlesB'=>$articlesB,
             'articlesT'=>$articlesT,
             'medias' => $media)
         );
@@ -49,7 +52,7 @@ class MainController extends Controller
             ->getRepository('BTBlogBundle:Articles')
             ->findByPostBy("b");
 
-        return $this->render('benjamin.html.twig',array('articles'=> $articles));
+        return $this->render('BTBlogBundle::benjamin.html.twig',array('articles'=> $articles));
     }
 
 
@@ -60,7 +63,7 @@ class MainController extends Controller
             ->getRepository('BTBlogBundle:Articles')
             ->findByPostBy("t");
 
-        return $this->render('thomas.html.twig',array('articles'=> $articles));
+        return $this->render('BTBlogBundle::thomas.html.twig',array('articles'=> $articles));
     }
 
 
@@ -110,7 +113,7 @@ class MainController extends Controller
             return $this->redirect($this->generateUrl('bt_blog_viewArticle',array('id'=>$article->getId())));
         }
 
-        return $this->render('viewArticle.html.twig',
+        return $this->render('BTBlogBundle::viewArticle.html.twig',
             array(
                 'form'=>$form->createView(),
                 'article' => $article,
@@ -119,6 +122,10 @@ class MainController extends Controller
             ));
 
     }
+
+    /**
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     */
 
     public function rmComAction(Request $request, $id){
         $comment = $this
@@ -144,6 +151,9 @@ class MainController extends Controller
 
     }
 
+    /**
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     */
     public function updComAction(Request $request, $id,$idPost)
     {
 
@@ -191,7 +201,7 @@ class MainController extends Controller
 
             return $this->redirect($this->generateUrl('bt_blog_viewArticle', array('id' => $article->getId())));
         } else {
-            return $this->render('viewArticle.html.twig',
+            return $this->render('BTBlogBundle::viewArticle.html.twig',
                 array(
                     'form' => $nForm->createView(),
                     'article' => $article,
@@ -231,7 +241,7 @@ class MainController extends Controller
 
 
 
-        return $this->render('viewArticle.html.twig', array(
+        return $this->render('BTBlogBundle::viewArticle.html.twig', array(
             'article' => $article,
             'commentaries' => $post,
             'media' => $media
@@ -248,9 +258,11 @@ class MainController extends Controller
     public function addArtAction(Request $request){
 
         $article = new Articles();
+
         $formArt = $this
             ->get('form.factory')
             ->create(ArticlesType::class,$article);
+
 
         if($formArt->handleRequest($request)->isValid()){
             $em = $this->getDoctrine()->getManager();
@@ -265,10 +277,11 @@ class MainController extends Controller
         return $this->render('BTBlogBundle::addArticle.html.twig',array('article'=>$formArt->createView()));
 
 
-
     }
 
-
+    /**
+     * @Security("is_granted('ROLE_AUTHOR')")
+     */
     public function rmArtAction(Request $request, $id)
     {
 
@@ -294,6 +307,9 @@ class MainController extends Controller
         return $this->redirect($this->generateUrl('bt_blog_home'));
     }
 
+    /**
+     * @Security("is_granted('ROLE_AUTHOR')")
+     */
     public function updArtAction(Request $request, $id){
 
         $article = $this
@@ -319,6 +335,39 @@ class MainController extends Controller
         return $this->render('BTBlogBundle::addArticle.html.twig',array('article'=>$formArt->createView()));
     }
 
+    /**
+     * @Security("is_granted('ROLE_AUTHOR')")
+     */
+    public function addMedAction(Request $request, $id){
+
+        $media = new Media();
+
+        $article = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BTBlogBundle:Articles')
+            ->find($id);
+
+        $media->setArticles($article);
+
+        $formMed= $this
+            ->get('form.factory')
+            ->create(MediaType::class,$media);
+
+
+        if($formMed->handleRequest($request)->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($media);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice','Media were added');
+
+            return $this->redirect($this->generateUrl('bt_blog_viewArticle',array('id'=>$id)));
+        }
+
+        return $this->render('BTBlogBundle::addArticle.html.twig',array('article'=>$formMed->createView()));
+
+    }
 }
 
 

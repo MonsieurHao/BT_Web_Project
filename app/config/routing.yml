@@ -1,3 +1,8 @@
+user:
+    resource: "@UserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 bt_blog:
     resource: "@BTBlogBundle/Resources/config/routing.yml"
     prefix:   /

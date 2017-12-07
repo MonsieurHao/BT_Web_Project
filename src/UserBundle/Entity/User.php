@@ -6,9 +6,9 @@
  * Time: 13:04
  */
 
-// src/BTBlogBundle/Entity/User.php
+// src/UserBundle/Entity/User.php
 
-namespace BTBlogBundle\Entity;
+namespace UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;

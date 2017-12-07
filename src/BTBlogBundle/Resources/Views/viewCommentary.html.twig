@@ -1,0 +1,44 @@
+
+
+{% if form is not defined %}
+
+
+        <a id="com_button" href="{{ path('bt_blog_addCommentary',{'id':article.id}) }}" class="btn btn-info btn-lg" role="button">Comment</a><hr>
+
+{% endif %}
+
+<br>
+
+<div>
+    {% if form is defined %}
+        {{ form(form) }}
+    {% endif %}
+
+    {%  for commentary in commentaries %}
+        <div class="com">
+            <div class="col-md-10">
+                <div>This commentary were posted on {{ commentary.date}}</div>
+                <div>By {{ commentary.pseudo }} : </div>
+                <div>{{ commentary.commentary }}</div>
+                <hr>
+            </div>
+            <div class="col-md-2">
+                {% if app.user is not null %}
+                    {% if app.user.username is same as(commentary.pseudo) %}
+                        <a href="{{ path('bt_blog_rmCommentary',{'id':commentary.id}) }}" type="button" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                        <a href="{{ path('bt_blog_updCommentary',{'id':article.id,'idPost':commentary.id}) }}" type="button" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                    {% endif %}
+                {% endif %}
+
+            </div>
+        </div>
+    {% else %} <div class="com">No commentary</div>
+                <hr>
+
+    {% endfor %}
+</div>
+

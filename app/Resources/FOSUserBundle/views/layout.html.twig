@@ -1,0 +1,22 @@
+{% extends 'layout.html.twig' %}
+
+{% block bundle_body %}
+
+        <div id="log_display" class="panel panel-default">
+            <div class="panel-heading">
+
+                {% for type, messages in app.session.flashbag.all() %}
+                    {% for key, message in messages %}
+                        <div class="flash-{{ type }}">
+                            {{ message|trans({}, 'FOSUserBundle') }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
+            </div>
+            <div class="panel-body">
+                {% block fos_user_content %}
+                {% endblock fos_user_content %}
+            </div>
+        </div>
+{% endblock %}
