@@ -18,21 +18,10 @@ hr{
    margin-right: 50px;
 }
 #com_button{
-    margin-top: 70px;
+    margin-top: 10px;
 }
 
-.com{
-    border: 10px;
-    border-bottom-color: #222222;
-}
 
-.article{
-    border: solid;
-    border-radius: 10px;
-    border-color: #940e5d;
-    text-decoration: none;
-
-}
 .article:hover{
     color: #000000;
 }
@@ -44,16 +33,17 @@ hr{
 .container-fluid_articles{
     background-color: #0da0c7;
     border-radius: 10px;
-    border: solid;;
-    border-color: #64717b;
+    border: solid #64717b;
 }
 
 .well{
     background-color: #64717b;
-    padding-left: 40px;
-    margin: 30px;
+    align-content: center;
+    margin: 20px;
 }
-
+.row{
+    margin: 5px;
+}
 .btn.btn-primary-text:focus{
     background-color: #428bb0;
     text-decoration: #FFFFFF;
@@ -62,6 +52,7 @@ hr{
 .article_title{
     font-size: x-large;
     font-family: "Dubai Medium";
+    margin-top: 10px;
 }
 
 

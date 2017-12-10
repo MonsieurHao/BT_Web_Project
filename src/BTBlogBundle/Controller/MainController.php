@@ -21,12 +21,12 @@ class MainController extends Controller
         $articlesB = $this
             ->getDoctrine()
             ->getRepository('BTBlogBundle:Articles')
-            -> getLastArticlesPosted("b",3);
+            -> getLastArticlesPosted("benjamin",3);
 
         $articlesT = $this
             ->getDoctrine()
             ->getRepository('BTBlogBundle:Articles')
-            -> getLastArticlesPosted("t",3);
+            -> getLastArticlesPosted("thomas",3);
 
 
         $media = $this
@@ -50,7 +50,7 @@ class MainController extends Controller
         $articles = $this
             ->getDoctrine()
             ->getRepository('BTBlogBundle:Articles')
-            ->findByPostBy("b");
+            ->findByPostBy("benjamin");
 
         return $this->render('@BTBlogBundle/Resources/Views/benjamin.html.twig',array('articles'=> $articles));
     }
@@ -61,7 +61,7 @@ class MainController extends Controller
         $articles = $this
             ->getDoctrine()
             ->getRepository('BTBlogBundle:Articles')
-            ->findByPostBy("t");
+            ->findByPostBy("thomas");
 
         return $this->render('@BTBlogBundle/Resources/Views/thomas.html.twig',array('articles'=> $articles));
     }
@@ -258,6 +258,7 @@ class MainController extends Controller
     public function addArtAction(Request $request){
 
         $article = new Articles();
+        $article->setPostBy($this->get('security.token_storage')->getToken()->getUser());
 
         $formArt = $this
             ->get('form.factory')

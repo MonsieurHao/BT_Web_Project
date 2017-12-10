@@ -17,7 +17,6 @@ class ArticlesType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('postBy')
             ->add('save',SubmitType::class);
     }
     

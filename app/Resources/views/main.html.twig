@@ -47,17 +47,17 @@
             </div>
             <div class="panel panel-body">
                 {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-                    <a href="{{ path('fos_user_change_password') }}" class="btn btn-info btn-lg pull-left" role="button">New password</a>
-                    <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-info btn-lg pull-left" role="button">Edit profile</a>
+                    <a href="{{ path('fos_user_change_password') }}" class="btn btn-info btn-lg pull-left btn-sm" role="button">New password</a>
+                    <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-info btn-lg pull-left btn-sm" role="button">Edit profile</a>
 
 
-                    <a href="{{ path('fos_user_security_logout') }}" class="btn btn-info btn-lg pull-right" role="button">Log out</a>
+                    <a href="{{ path('fos_user_security_logout') }}" class="btn btn-info btn-lg pull-right btn-sm" role="button">Log out</a>
                     {% if is_granted('ROLE_AUTHOR') %}
-                        <a href="{{ path('bt_blog_addArticle') }}" class="btn btn-info btn-lg pull-left" role="button">New Article</a>
+                        <a href="{{ path('bt_blog_addArticle') }}" class="btn btn-info btn-lg pull-left btn-sm" role="button">New Article</a>
                     {% endif %}
                 {% else %}
-                    <a href="{{ path('fos_user_registration_register') }} " class="btn btn-info btn-lg pull-right" role="button">Sign in</a>
-                    <a href="{{ path('fos_user_security_login') }}" class="btn btn-info btn-lg pull-right" role="button">Log in</a>
+                    <a href="{{ path('fos_user_registration_register') }} " class="btn btn-info btn-lg pull-right btn-sm" role="button">Sign in</a>
+                    <a href="{{ path('fos_user_security_login') }}" class="btn btn-info btn-lg pull-right btn-sm" role="button">Log in</a>
 
                 {% endif %}
             </div>

@@ -62,8 +62,8 @@ class Articles
     /**
      * @var string
      *
-     * @ORM\Column(name="postBy", type="string", length=1)
-     * @Assert\Length(min=1,max=1,minMessage="Please add a character!",maxMessage="Only one character!")
+     * @ORM\Column(name="postBy", type="string")
+     * @Assert\Length(min=1,minMessage="Please add a character!")
      */
     private $postBy;
 

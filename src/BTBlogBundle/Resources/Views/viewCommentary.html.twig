@@ -3,7 +3,7 @@
 {% if form is not defined %}
 
 
-        <a id="com_button" href="{{ path('bt_blog_addCommentary',{'id':article.id}) }}" class="btn btn-info btn-lg" role="button">Comment</a><hr>
+        <a id="com_button" href="{{ path('bt_blog_addCommentary',{'id':article.id}) }}" class="btn btn-info btn-lg btn-sm" role="button">Comment</a><hr>
 
 {% endif %}
 
@@ -31,6 +31,7 @@
                         <a href="{{ path('bt_blog_updCommentary',{'id':article.id,'idPost':commentary.id}) }}" type="button" class="btn btn-default btn-sm">
                             <span class="glyphicon glyphicon-edit"></span>
                         </a>
+                        <hr>
                     {% endif %}
                 {% endif %}
 
