@@ -13,7 +13,7 @@ use Doctrine\ORM\QueryBuilder;
  */
 class ArticlesRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getLastArticlesPosted($postBy,$limit){
+    public function getLastArticlesPosted($postBy,$limit){                                                                              // Get the last articles from an author
 
 
         $qb=$this->createQueryBuilder('a');

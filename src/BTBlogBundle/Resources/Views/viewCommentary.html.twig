@@ -24,7 +24,7 @@
             </div>
             <div class="col-md-2">
                 {% if app.user is not null %}
-                    {% if app.user.username is same as(commentary.pseudo) %}
+                    {% if app.user.username is same as(commentary.pseudo) or is_granted('ROLE_AUTHOR') %}
                         <a href="{{ path('bt_blog_rmCommentary',{'id':commentary.id}) }}" type="button" class="btn btn-default btn-sm">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>

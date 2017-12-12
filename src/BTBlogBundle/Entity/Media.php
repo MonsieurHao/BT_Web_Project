@@ -15,7 +15,7 @@ class Media
 {
 
     /**
-     * @ORM\ManyToOne(targetEntity="BTBlogBundle\Entity\Articles", inversedBy="Medias", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="BTBlogBundle\Entity\Articles", inversedBy="medias", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      * @Assert\Valid()
      */
