@@ -124,17 +124,17 @@ class MainController extends Controller
 
 
 
-        if($form->handleRequest($request)->isValid()){                                                                                  // Push the commentary on the database if the form is valid
+        if($form->handleRequest($request)->isSubmitted() and $form->isValid()){                                                        // Push the commentary on the database if the form is valid
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('notice','Commentary were added');                                               // Return the article concerned and notice that it were added
+            $request->getSession()->getFlashBag()->add('notice','Commentary were added');                                              // Return the article concerned and notice that it were added
 
             return $this->redirect($this->generateUrl('bt_blog_viewArticle',array('id'=>$article->getId())));
         }
 
-        return $this->render('@BTBlogBundle/Resources/Views/viewArticle.html.twig',                                                     // Return the form created and the article concerned
+        return $this->render('@BTBlogBundle/Resources/Views/viewArticle.html.twig',                                                    // Return the form created and the article concerned
             array(
                 'form'=>$form->createView(),
                 'article' => $article,
@@ -160,7 +160,7 @@ class MainController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        if ($commentary and ($user->getUsername() == $commentary->getPseudo() or $user->hasRole('ROLE_AUTHOR')) ) {                                                         // remove the commentary if it exist and if it were post by the user who want to remove it
+        if ($commentary and ($user->getUsername() == $commentary->getPseudo() or $user->hasRole('ROLE_AUTHOR')) ) {                      // remove the commentary if it exist and if it were post by the user who want to remove it
             $em = $this->getDoctrine()->getManager();
             $em->remove($commentary);
             $em->flush();
@@ -183,7 +183,7 @@ class MainController extends Controller
      * @param int$idPost
      * @return mixed
      */
-    public function updComAction(Request $request, $id, $idPost)                                                                         // update the commentary if it exist and if it were post by the user who want to update it
+    public function updComAction(Request $request, $id, $idPost)                                                                        // update the commentary if it exist and if it were post by the user who want to update it
     {
 
 
@@ -197,7 +197,7 @@ class MainController extends Controller
 
         $commentaries = $this->getDoctrine()->getManager()->getRepository('BTBlogBundle:Post')->findByArticles($id);                    // List of all commentaries on this article
 
-        if (!$article or !$post) {                                                                                                                // Return to the home page if the article doesn't exist and notice the user
+        if (!$article or !$post) {                                                                                                      // Return to the home page if the article doesn't exist and notice the user
 
             $request->getSession()->getFlashBag()->add('Warning', 'This article or commentary does not exist');
 
@@ -210,7 +210,7 @@ class MainController extends Controller
             ->create(PostType::class, $post);
 
 
-        if ($form->handleRequest($request)->isValid() and ($user->getUsername() == $post->getPseudo() or $user->hasRole('ROLE_AUTHOR'))) {  //Push the updated commentary if it is valid and if the user is the owner of the commentary or is an author
+        if ($form->handleRequest($request)->isSubmitted() and $form->isValid() and ($user->getUsername() == $post->getPseudo() or $user->hasRole('ROLE_AUTHOR'))) {  //Push the updated commentary if it is valid and if the user is the owner of the commentary or is an author
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
@@ -292,6 +292,7 @@ class MainController extends Controller
     public function addArtAction(Request $request){                                                                                      // Provide the add article action
 
         $article = new Articles();
+
         $article->setPostBy($this->get('security.token_storage')->getToken()->getUser());                                                // Set the author of the article
 
         $formArt = $this                                                                                                                 // Create the form for the article
@@ -299,12 +300,13 @@ class MainController extends Controller
             ->create(ArticlesType::class,$article);
 
 
-        if($formArt->handleRequest($request)->isValid()){                                                                                // Push the article to the database if the form is valid
+        if($formArt->handleRequest($request)->isSubmitted() and $formArt->isValid() ){                                                   // Push the article to the database if the form is valid
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
             $em->flush();
 
             $request->getSession()->getFlashBag()->add('notice','Article were added');                                                   // render the article and notice the author that it were added
+
 
             return $this->redirect($this->generateUrl('bt_blog_viewArticle',array('id'=>$article->getId())));
         }
@@ -360,7 +362,7 @@ class MainController extends Controller
 
         if(!$article) {                                                                                                                     // return to home page if the article doesn't exist
 
-            $request->getSession()->getFlashBag()->add('Warning','this article does not exist !');
+            $request->getSession()->getFlashBag()->add('Warning','This article does not exist !');
 
             return $this->redirect($this->generateUrl('bt_blog_home'));
         }
@@ -371,12 +373,12 @@ class MainController extends Controller
             ->create(ArticlesType::class,$article);
 
 
-        if($formArt->handleRequest($request)->isValid()){                                                                                 // Push the form if it is valid, notice the author that it were updated and render it
+        if($formArt->handleRequest($request)->isSubmitted() and $formArt->isValid()){                                                                                 // Push the form if it is valid, notice the author that it were updated and render it
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('notice','Article were added');
+            $request->getSession()->getFlashBag()->add('notice','Article were updated');
 
             return $this->redirect($this->generateUrl('bt_blog_viewArticle',array('id'=>$article->getId())));
         }
@@ -387,14 +389,13 @@ class MainController extends Controller
     /**
      * @Security("is_granted('ROLE_AUTHOR')")
      * @param Request $request
-     * @param $id
+     * @param int $id
      * @return mixed
      */
     public function addMedAction(Request $request, $id){                                                                                   // Provide the add media action
 
-        $referer = $request->headers->get('referer');
 
-        $media = new Media();
+
 
         $article = $this                                                                                                                   // Get the article concerned
             ->getDoctrine()
@@ -402,26 +403,23 @@ class MainController extends Controller
             ->getRepository('BTBlogBundle:Articles')
             ->find($id);
 
-        if(!$article) {                                                                                                                     // return to home page if the article doesn't exist
+        if(!$article) {                                                                                                                    // return to home page if the article doesn't exist
 
-            $request->getSession()->getFlashBag()->add('Warning','this article does not exist !');
+            $request->getSession()->getFlashBag()->add('Warning','Can not add media, there is no article posted');
 
-            if($referer) {
-                return $this->redirect($referer);                                                                                           // Redirect to last page ( WARNING NEED TO BE TESTED on server )
-            }else{
-                return $this->redirect($this->generateUrl('bt_blog_home'));                                                                 // Redirect to home page if referer is null
-            }
+            return $this->redirect($this->generateUrl('bt_blog_home'));                                                                    // Redirect to home page if referer is null
+
         }
 
-
-        $media->setArticles($article);                                                                                                     // Link the media and the article
+        $media = new Media();
 
         $formMed= $this                                                                                                                    // Create the form
             ->get('form.factory')
             ->create(MediaType::class,$media);
 
+        $media->setArticles($article);
 
-        if($formMed->handleRequest($request)->isValid()){                                                                                  // Push the media to the database if the form is valid, notice the author, and render the article
+        if($formMed->handleRequest($request)->isSubmitted() and $formMed->isValid()){                                                      // Push the media to the database if the form is valid, notice the author, and render the article
             $em = $this->getDoctrine()->getManager();
             $em->persist($media);
             $em->flush();

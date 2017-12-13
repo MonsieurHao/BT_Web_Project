@@ -11,14 +11,14 @@
         <div class="container-fluid_articles">
             <div class="row">
                 {%  for article in articles %}
-                    <div class="col-sm-4">
+                    <div class="col-lg-4">
                         <div class="well"><a href="{{ path('bt_blog_viewArticle',{'id':article.id}) }}"><h5>{{ article.title }}</h5></a><br>
-                            <p>This article were posted on {{ article.date}} <br>
+                            <div class="information"><p>This article were posted on {{ article.date}} <br>
                             By {{ article.postBy }} : <br>
                             {{ article.content }}
                             <br>
                             <br>
-                            </p></div>
+                            </p></div></div>
                     </div>
                 {% else %} <div class="article">No article</div>
                 {% endfor %}

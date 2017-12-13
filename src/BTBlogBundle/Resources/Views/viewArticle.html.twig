@@ -1,21 +1,27 @@
 {% extends "layout.html.twig" %}
+
+
+
 {% block bundle_body %}
 
-
-        {%  stylesheets '@BTBlogBundle/Resources/public/css/article.css' %}
+    {%  stylesheets '@BTBlogBundle/Resources/public/css/article.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
-        {% endstylesheets %}
+    {% endstylesheets %}
+
+
 
     <div class="row">
         <div class="col-md-8">
-            <div class="article_title">
-                {{ article.title }}
-                {% if is_granted('ROLE_AUTHOR') %}
-                    <a id="delButton" href="{{ path('bt_blog_rmArticle',{'id':article.id}) }}" class="btn btn-info btn-lg pull-right btn-sm" role="button">Delete</a>
-                    <a id="updButton" href="{{ path('bt_blog_updArticle',{'id':article.id}) }}" class="btn btn-info btn-lg pull-right btn-sm" role="button">Update</a>
-                {% endif %}
-                <hr>
-            </div> <br>
+            <div class="article_title">{{ article.title }}</div>
+            <div class="information">({{ article.postBy }}) </div>
+            {% if is_granted('ROLE_AUTHOR') %}
+                <a  href="{{ path('bt_blog_rmArticle',{'id':article.id}) }}" class="btn btn-info btn-lg pull-right btn-sm" role="button">Delete</a>
+                <a href="{{ path('bt_blog_addMedia',{'id':article.id}) }}" class="btn btn-info btn-lg pull-right btn-sm" role="button">New Media</a>
+                <a  href="{{ path('bt_blog_updArticle',{'id':article.id}) }}" class="btn btn-info btn-lg pull-right btn-sm" role="button">Update</a>
+            {% endif %}
+
+            <hr>
+            <br>
             <div class="article_page_content">
                 {{ article.content }}
                 <br>

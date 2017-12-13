@@ -17,6 +17,7 @@ class Articles
 {
     /**
      * @ORM\OneToMany(targetEntity="BTBlogBundle\Entity\Media", mappedBy="articles", cascade={"persist"})
+     *
      */
     private $medias;
 
@@ -62,7 +63,7 @@ class Articles
     /**
      * @var string
      *
-     * @ORM\Column(name="postBy", type="string")
+     * @ORM\Column(name="postBy", type="text")
      * @Assert\Length(min=1,minMessage="Please add a character!")
      */
     private $postBy;
@@ -248,5 +249,19 @@ class Articles
     public function getPosts()
     {
         return $this->posts;
+    }
+
+    /**
+     * Set medias
+     *
+     * @param string $medias
+     *
+     * @return Articles
+     */
+    public function setMedias($medias)
+    {
+        $this->medias = $medias;
+
+        return $this;
     }
 }

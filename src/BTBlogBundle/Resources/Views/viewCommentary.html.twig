@@ -3,7 +3,15 @@
 {% if form is not defined %}
 
 
-        <a id="com_button" href="{{ path('bt_blog_addCommentary',{'id':article.id}) }}" class="btn btn-info btn-lg btn-sm" role="button">Comment</a><hr>
+        <div id="com_button">
+            <a  href="{{ path('bt_blog_addCommentary',{'id':article.id}) }}" class="btn btn-info btn-lg btn-sm" role="button">Comment</a>
+            <div class="information">
+                {% for message in app.flashes('notice') %}
+                    {{ message }} <span class="glyphicon glyphicon-ok"></span>
+                {% endfor %}
+            </div>
+        </div>
+        <hr>
 
 {% endif %}
 
@@ -16,13 +24,12 @@
 
     {%  for commentary in commentaries %}
         <div class="com">
-            <div class="col-md-10">
-                <div>This commentary were posted on {{ commentary.date}}</div>
-                <div>By {{ commentary.pseudo }} : </div>
-                <div>{{ commentary.commentary }}</div>
+            <div class="col-lg-10">
+                <div>{{ commentary.pseudo }} : {{ commentary.commentary }}</div>
+                <div class="information">This commentary were posted on {{ commentary.date}}</div>
                 <hr>
             </div>
-            <div class="col-md-2">
+            <div class="col-lg-2">
                 {% if app.user is not null %}
                     {% if app.user.username is same as(commentary.pseudo) or is_granted('ROLE_AUTHOR') %}
                         <a href="{{ path('bt_blog_rmCommentary',{'id':commentary.id}) }}" type="button" class="btn btn-default btn-sm">

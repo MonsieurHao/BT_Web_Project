@@ -16,7 +16,7 @@ class Media
 
     /**
      * @ORM\ManyToOne(targetEntity="BTBlogBundle\Entity\Articles", inversedBy="medias", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      * @Assert\Valid()
      */
     private $articles;
@@ -40,9 +40,7 @@ class Media
 
     /**
      * @var string
-     *
      * @ORM\Column(name="link", type="string", length=255)
-     * @Assert\NotBlank()
      */
     private $link;
 
@@ -50,7 +48,7 @@ class Media
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=5)
-     * @Assert\Length(min=5,max=5,minMessage="Must be : video, music or image",maxMessage="Must be : video, music or image")
+     * @Assert\Length(max=5, maxMessage="Must be : video, music or image")
      */
     private $type;
 

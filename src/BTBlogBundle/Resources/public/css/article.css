@@ -14,13 +14,6 @@ hr{
     margin-right: 50px;
 }
 
-#delButton{
-   margin-right: 50px;
-}
-#com_button{
-    margin-top: 10px;
-}
-
 
 .article:hover{
     color: #000000;
@@ -53,10 +46,20 @@ hr{
     font-size: x-large;
     font-family: "Dubai Medium";
     margin-top: 10px;
+    display: inline-block;
 }
 
 
 .col-sm-8{
     padding: 70px;
     font-size: medium;
+}
+
+.information{
+    font-size: x-small;
+    display: inline-block;
+}
+
+.btn.btn-info.btn-lg.btn-sm{
+    margin-top: 10px;
 }
