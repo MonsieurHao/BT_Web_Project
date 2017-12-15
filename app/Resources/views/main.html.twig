@@ -12,7 +12,7 @@
         {# On charge le CSS de bootstrap depuis le site directement #}
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
-        {%  stylesheets '@BTBlogBundle/Resources/public/css/main.css' filter='cssrewrite' %}
+        {%  stylesheets '@BTBlogBundle/Resources/public/css/*' filter='cssrewrite' %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
         {% endstylesheets %}
 
