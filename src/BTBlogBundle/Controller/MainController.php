@@ -360,7 +360,7 @@ class MainController extends Controller
             ->getRepository('BTBlogBundle:Articles')
             ->find($id);
 
-        if(!$article) {                                                                                                                     // return to home page if the article doesn't exist
+        if(!$article) {                                                                                                                   // return to home page if the article doesn't exist
 
             $request->getSession()->getFlashBag()->add('Warning','This article does not exist !');
 
@@ -373,7 +373,7 @@ class MainController extends Controller
             ->create(ArticlesType::class,$article);
 
 
-        if($formArt->handleRequest($request)->isSubmitted() and $formArt->isValid()){                                                                                 // Push the form if it is valid, notice the author that it were updated and render it
+        if($formArt->handleRequest($request)->isSubmitted() and $formArt->isValid()){                                                    // Push the form if it is valid, notice the author that it were updated and render it
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
             $em->flush();

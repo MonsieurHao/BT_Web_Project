@@ -6,10 +6,9 @@
     <div class="panel-group padding-gp">
         <div class="col-lg-6 padding-int">
             <div class="panel panel-default" id="Thomas_home_panel">
-                <div class="panel-heading"><a href="#" data-toggle="tooltip" data-placement="right" title="Thomas est étudiant à l'ESIEA.
-                Il aime grandement la musique et lui arrive de créer quelques morceaux quand l'envie lui prend.
-                 Il est également passionné par le Japon et toute sa culture.">Thomas</a></div>
-                <div class="panel-body">Musiques crées ou conseillées par Thomas
+                <div class="panel-heading"><a href="#" data-toggle="tooltip" data-placement="right" title="Thomas study at ESIEA.
+                He like music and make some. He is also passionated by Japanese culture.">Thomas</a></div>
+                <div class="panel-body">Music made or recommended by Thomas
                     <br>
                         {% for article in articlesT %}
                             <div class="title_date"><a href={{ path('bt_blog_viewArticle',{'id':article.id}) }}>{{ article.title }}</a> {{ article.date }}</div>
@@ -31,9 +30,9 @@
         </div>
         <div class="col-lg-6 padding-int">
             <div class="panel panel-default" id="Benjamin_home_panel">
-                <div class="panel-heading"><a href="#" data-toggle="tooltip" data-placement="right" title="Benjamin est étudiant à l'ESIEA.
-                Il aime faire du montage vidéo avec des films de ses voyages autour du monde.">Benjamin</a></div>
-                <div class="panel-body">Montages vidéos réalisés par Benjamin
+                <div class="panel-heading"><a href="#" data-toggle="tooltip" data-placement="right" title="Benjamin study at ESIEA.
+                He like to make video about his travels.">Benjamin</a></div>
+                <div class="panel-body">Video made by Benjamin
                     <br>
                     {% for article in articlesB %}
                         <div class="title_date"><a href={{ path('bt_blog_viewArticle',{'id':article.id}) }}>{{ article.title }}</a> {{ article.date }}</div>

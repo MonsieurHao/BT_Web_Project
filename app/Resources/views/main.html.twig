@@ -23,45 +23,33 @@
 <body>
 
 <div class="container-fluid head">
-    <div id="header" class="c">
+    <div id="header" class="row">
+
         <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
 
             <div class="carousel-inner">
                 <div class="item active">
-                    {% image '@BTBlogBundle/Resources/public/image/DSC_0289.jpg' %}
-                    <img src="{{ asset( asset_url )}}" class="img-responsive" alt="Reunion Island" style="width: 100%;">
+                    {% image '@BTBlogBundle/Resources/public/image/NC.jpg' %}
+                    <img src="{{ asset( asset_url )}}" class="img-responsive" alt="New-Caledonia" style="width: 100%;">
                     {% endimage %}
-                    <div class="carousel-caption">
-                        <p class="h1" style="text-align: center">T&B</p>
-                        <p class="h3" style="text-align: center">Travel Together</p>
-                    </div>
                 </div>
-
                 <div class="item">
-                    {% image '@BTBlogBundle/Resources/public/image/DSC_0289.jpg' %}
-                        <img src="{{ asset( asset_url )}}" class="img-responsive" alt="Reunion Island" style="width: 100%;" >
+                    {% image '@BTBlogBundle/Resources/public/image/Nice.jpg' %}
+                        <img src="{{ asset( asset_url )}}" class="img-responsive" alt="Nice" style="width: 100%;" >
                     {% endimage %}
-                    <div class="carousel-caption">
-                        <p class="h1" style="text-align: center">T&B</p>
-                        <p class="h3" style="text-align: center">Travel Together</p>
-                    </div>
                 </div>
-
                 <div class="item">
-                    {% image '@BTBlogBundle/Resources/public/image/DSC_0289.jpg' %}
-                        <img src="{{ asset( asset_url )}}" class="img-responsive" alt="Reunion Island" style="width: 100%;">
+                    {% image '@BTBlogBundle/Resources/public/image/Reunion.jpg' %}
+                        <img src="{{ asset( asset_url )}}" class="img-responsive" alt="Reunion" style="width: 100%;">
                     {% endimage %}
-                    <div><div class="carousel-caption">
-                        <p class="h1" style="text-align: center">T&B</p>
-                        <p class="h3" style="text-align: center">Travel Together</p>
-                    </div>
                 </div>
             </div>
+        </div>
+        <div class="container-fluid">
+        <div class="title">
+                <h1 style="text-align: center">T&B</h1>
+                <h3 style="text-align: center">Travel Together</h3>
+        </div>
         </div>
     </div>
 </div>

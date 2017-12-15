@@ -34,9 +34,7 @@ hr{
     align-content: center;
     margin: 20px;
 }
-.row{
-    margin: 5px;
-}
+
 .btn.btn-primary-text:focus{
     background-color: #428bb0;
     text-decoration: #FFFFFF;

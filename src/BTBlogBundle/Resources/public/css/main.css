@@ -1,8 +1,10 @@
-.h1{
-    color: #252578;
+h1{
+    color: rgba(255,255,255,255);
+    text-shadow: 0.5vw 0.1vw #071822;
     font-family: "Magneto",serif;
     font-weight: bold;
-    font-size: 60px;
+    font-size: 12vw;
+    margin-bottom: 1px;
 
 }
 
@@ -12,9 +14,11 @@ h2{
     text-decoration: underline;
 }
 
-.h3{
-    color: #909090;
+h3{
+    color: #FFFFFF;
     text-align: center;
+    font-size: 1.5vw;
+    margin-top: 1px;
 }
 h4{
     font-size: 20px;
@@ -29,7 +33,27 @@ body{
 
 }
 
+ul li{
+    list-style-type: none;
+}
 
+.carousel.slide.carousel-fade{
+    z-index: 1;
+    position: relative;
+}
+
+.title{
+
+    z-index: 10;
+    position: absolute;
+    width: 100%;
+    top: 1%;
+    margin: 0;
+}
+
+.carousel-indicators{
+    list-style-type: none;
+}
 
 .container-fluid{
     background-color: transparent;
