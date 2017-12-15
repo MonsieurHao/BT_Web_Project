@@ -4,7 +4,7 @@
 
 {% block bundle_body %}
 
-    {%  stylesheets '@BTBlogBundle/Resources/public/css/article.css' %}
+    {%  stylesheets filter='cssrewrite' '@BTBlogBundle/Resources/public/css/article.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
     {% endstylesheets %}
 
