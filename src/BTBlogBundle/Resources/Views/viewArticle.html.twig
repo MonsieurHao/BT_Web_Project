@@ -1,12 +1,15 @@
 {% extends "layout.html.twig" %}
 
+{% block stylesheets %}
+    {%  stylesheets '@BTBlogBundle/Resources/public/css/article.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+    {% endstylesheets %}
+{% endblock %}
 
 
 {% block bundle_body %}
 
-    {%  stylesheets filter='cssrewrite' '@BTBlogBundle/Resources/public/css/article.css' %}
-        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
-    {% endstylesheets %}
+
 
 
 
