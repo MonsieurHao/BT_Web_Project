@@ -9,11 +9,12 @@
             <div class="row">
                 {%  for article in articles %}
                     <div class="col-sm-4">
-                        <div class="well articles"><a href="{{ path('bt_blog_viewArticle',{'id':article.id}) }}"><h5>{{ article.title }}</h5></a><br>
+                        <div class="well articles">
+                            <a href="{{ path('bt_blog_viewArticle',{'id':article.id}) }}"><h5>{{ article.title }}</h5></a>
                             <div class="information">
-                                <p>This article were posted on {{ article.date}}</p> <br>
+                                <p>This article were posted on {{ article.date}}</p>
                             </div>
-                            {{ article.content }}
+                            <div>{{ article.content }}</div>
                             </div>
                     </div>
                 {% else %} <div class="article">No article</div>

@@ -56,7 +56,7 @@ class Articles
      * @var string
      *
      * @ORM\Column(name="content", type="text")
-     * @Assert\Type("string")
+     * @Assert\Type("text")
      */
     private $content;
 

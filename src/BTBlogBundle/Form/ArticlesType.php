@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ArticlesType extends AbstractType
 {
@@ -18,7 +18,7 @@ class ArticlesType extends AbstractType
     {
         $builder
             ->add('title',  TextType::class)
-            ->add('content',TextType::class)
+            ->add('content',TextareaType::class)
             ->add('save',   SubmitType::class);
     }
     
