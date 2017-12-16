@@ -63,7 +63,7 @@ class MainController extends Controller
     /**
      * @return mixed
      */
-    public function thomasAction()                                                                                                     // render thomas' page
+    public function thomasAction()                                                                                                     // Render thomas' page
     {
         $articles = $this                                                                                                              // Render the list of articles concerned by Thomas (The list can be null)
             ->getDoctrine()
@@ -80,7 +80,7 @@ class MainController extends Controller
      * @param int $id
      * @return mixed
      */
-    public function addComAction(Request $request, $id)                                                                                //Provide the add commentary, and push it on the Database
+    public function addComAction(Request $request, $id)                                                                                //Provide the add commentary action, and push it on the Database
     {
 
         $user = $this->get('security.token_storage')->getToken()->getUser();                                                           // Get the current user
@@ -100,14 +100,14 @@ class MainController extends Controller
             ->findByArticles($id);
 
 
-        $com = $this                                                                                                                   // Get all the commentary concerned by the article (can be null)
+        $com = $this                                                                                                                   // Get all the commentaries concerned by the article (can be null)
             ->getDoctrine()
             ->getManager()
             ->getRepository('BTBlogBundle:Post')
             ->findByArticles($id);
 
 
-        if (!$article) {                                                                                                                // Return to the home page if the article doesn't exist and notice the user
+        if (!$article) {                                                                                                                // Return to the home page if the article doesn't exist and notify the user
             $request->getSession()->getFlashBag()->add('notice', 'This article does not exist');
 
             return $this->redirect($this->generateUrl('bt_blog_home'));
@@ -129,7 +129,7 @@ class MainController extends Controller
             $em->persist($post);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('notice','Commentary were added');                                              // Return the article concerned and notice that it were added
+            $request->getSession()->getFlashBag()->add('notice','Commentary were added');                                              // Return the article concerned and notify that it was added
 
             return $this->redirect($this->generateUrl('bt_blog_viewArticle',array('id'=>$article->getId())));
         }
@@ -160,17 +160,17 @@ class MainController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        if ($commentary and ($user->getUsername() == $commentary->getPseudo() or $user->hasRole('ROLE_AUTHOR')) ) {                      // remove the commentary if it exist and if it were post by the user who want to remove it
+        if ($commentary and ($user->getUsername() == $commentary->getPseudo() or $user->hasRole('ROLE_AUTHOR')) ) {                      // remove the commentary if it exists and if it was posted by the user who wants to remove it
             $em = $this->getDoctrine()->getManager();
             $em->remove($commentary);
             $em->flush();
 
             $request->getSession()->getFlashBag()->add('notice', 'Comment were remove');
-            return $this->redirect($this->generateUrl('bt_blog_viewArticle',array('id'=>$commentary->getArticles()->getId())));          // return the article concerned without the removed commentary and notice that the commentary were removed
+            return $this->redirect($this->generateUrl('bt_blog_viewArticle',array('id'=>$commentary->getArticles()->getId())));          // return the article concerned without the removed commentary and notify that the commentary was removed
         }
         else{
 
-            $request->getSession()->getFlashBag()->add('Warning', 'This comment does not exist');                                        // return the article with no update and notice that the commentary doesn't exist
+            $request->getSession()->getFlashBag()->add('Warning', 'This comment does not exist');                                        // return the article with no update and notify that the commentary doesn't exist
             return $this->redirect($this->generateUrl('bt_blog_home'));
         }
 
@@ -183,7 +183,7 @@ class MainController extends Controller
      * @param int$idPost
      * @return mixed
      */
-    public function updComAction(Request $request, $id, $idPost)                                                                        // update the commentary if it exist and if it were post by the user who want to update it
+    public function updComAction(Request $request, $id, $idPost)                                                                        // update the commentary if it exists and if it was posted by the user who want to update it
     {
 
 
@@ -191,13 +191,13 @@ class MainController extends Controller
 
         $post = $this->getDoctrine()->getManager()->getRepository('BTBlogBundle:Post')->find($idPost);                                  // Get the commentary concerned
 
-        $article = $this->getDoctrine()->getRepository('BTBlogBundle:Articles')->find($id);                                             // Get the Article concerned
+        $article = $this->getDoctrine()->getRepository('BTBlogBundle:Articles')->find($id);                                             // Get the article concerned
 
-        $media = $this->getDoctrine()->getManager()->getRepository('BTBlogBundle:Media')->findByArticles($id);                          // List of all media on this article
+        $media = $this->getDoctrine()->getManager()->getRepository('BTBlogBundle:Media')->findByArticles($id);                          // List all media on this article
 
-        $commentaries = $this->getDoctrine()->getManager()->getRepository('BTBlogBundle:Post')->findByArticles($id);                    // List of all commentaries on this article
+        $commentaries = $this->getDoctrine()->getManager()->getRepository('BTBlogBundle:Post')->findByArticles($id);                    // List all commentaries on this article
 
-        if (!$article or !$post) {                                                                                                      // Return to the home page if the article doesn't exist and notice the user
+        if (!$article or !$post) {                                                                                                      // Return to the home page if the article doesn't exist and notify the user
 
             $request->getSession()->getFlashBag()->add('Warning', 'This article or commentary does not exist');
 
@@ -254,7 +254,7 @@ class MainController extends Controller
             ->getRepository('BTBlogBundle:Articles')
             ->find($id);
 
-        if (!$article) {                                                                                                                // Return to the home page if the article doesn't exist and notice the user
+        if (!$article) {                                                                                                                // Return to the home page if the article doesn't exist and notify the user
             $request->getSession()->getFlashBag()->add('Warning', 'This article does not exist');
 
             return $this->redirect($this->generateUrl('bt_blog_home'));
@@ -274,7 +274,7 @@ class MainController extends Controller
 
 
 
-        return $this->render('@BTBlogBundle/Resources/Views/viewArticle.html.twig', array(                                               // Render the article and all media, and commentaries concerned
+        return $this->render('@BTBlogBundle/Resources/Views/viewArticle.html.twig', array(                                               // Render the article, all media, and commentaries concerned
             'article' => $article,
             'commentaries' => $comments,
             'media' => $media
@@ -305,7 +305,7 @@ class MainController extends Controller
             $em->persist($article);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('notice','Article were added');                                                   // render the article and notice the author that it were added
+            $request->getSession()->getFlashBag()->add('notice','Article were added');                                                   // render the article and notify the author that it was added
 
 
             return $this->redirect($this->generateUrl('bt_blog_viewArticle',array('id'=>$article->getId())));
@@ -331,16 +331,16 @@ class MainController extends Controller
             ->getRepository('BTBlogBundle:Articles')
             ->find($id);
 
-        if ($article) {                                                                                                                   // remove the article from the database if it exist
+        if ($article) {                                                                                                                   // remove the article from the database if it exists
             $em = $this->getDoctrine()->getManager();
             $em->remove($article);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('notice', 'Article were remove');                                                  // notice that it were removed
+            $request->getSession()->getFlashBag()->add('notice', 'Article were remove');                                                  // notify that it was removed
         }
         else{
 
-            $request->getSession()->getFlashBag()->add('Warning', 'This article does not exist');                                          // notice the author that the article doesn't exist
+            $request->getSession()->getFlashBag()->add('Warning', 'This article does not exist');                                          // notify the author that the article doesn't exist
         }
 
         return $this->redirect($this->generateUrl('bt_blog_home'));                                                                       // return the home page
@@ -373,7 +373,7 @@ class MainController extends Controller
             ->create(ArticlesType::class,$article);
 
 
-        if($formArt->handleRequest($request)->isSubmitted() and $formArt->isValid()){                                                    // Push the form if it is valid, notice the author that it were updated and render it
+        if($formArt->handleRequest($request)->isSubmitted() and $formArt->isValid()){                                                    // Push the form if it is valid, notify the author that it was updated and renders it
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
             $em->flush();
@@ -407,7 +407,7 @@ class MainController extends Controller
 
             $request->getSession()->getFlashBag()->add('Warning','Can not add media, there is no article posted');
 
-            return $this->redirect($this->generateUrl('bt_blog_home'));                                                                    // Redirect to home page if referer is null
+            return $this->redirect($this->generateUrl('bt_blog_home'));                                                                    // Redirect to home page if reference is null
 
         }
 
@@ -419,7 +419,7 @@ class MainController extends Controller
 
         $media->setArticles($article);
 
-        if($formMed->handleRequest($request)->isSubmitted() and $formMed->isValid()){                                                      // Push the media to the database if the form is valid, notice the author, and render the article
+        if($formMed->handleRequest($request)->isSubmitted() and $formMed->isValid()){                                                      // Push the media to the database if the form is valid, notify the author, and render the article
             $em = $this->getDoctrine()->getManager();
             $em->persist($media);
             $em->flush();
