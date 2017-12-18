@@ -108,7 +108,7 @@ class MainController extends Controller
 
 
         if (!$article) {                                                                                                                // Return to the home page if the article doesn't exist and notify the user
-            $request->getSession()->getFlashBag()->add('notice', 'This article does not exist');
+            $request->getSession()->getFlashBag()->add('Warning', 'This article does not exist');
 
             return $this->redirect($this->generateUrl('bt_blog_home'));
         }

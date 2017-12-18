@@ -6,8 +6,8 @@
     <div class="panel-group padding-gp">
         <div class="col-lg-6 padding-int">
             <div class="panel panel-default" id="Thomas_home_panel">
-                <div class="panel-heading"><a href="#" data-toggle="tooltip" data-placement="right" title="Thomas study at ESIEA.
-                He like music and make some. He is also passionated by Japanese culture.">Thomas</a></div>
+                <div class="panel-heading"><a href="#" data-toggle="tooltip" data-placement="right" title="Thomas studies at ESIEA.
+                He likes music and make some. He is also passionated by Japanese culture.">Thomas</a></div>
                 <div class="panel-body">Music made or recommended by Thomas
                     <br>
                         {% for article in articlesT %}
@@ -30,9 +30,9 @@
         </div>
         <div class="col-lg-6 padding-int">
             <div class="panel panel-default" id="Benjamin_home_panel">
-                <div class="panel-heading"><a href="#" data-toggle="tooltip" data-placement="right" title="Benjamin study at ESIEA.
-                He like to make video about his travels.">Benjamin</a></div>
-                <div class="panel-body">Video made by Benjamin
+                <div class="panel-heading"><a href="#" data-toggle="tooltip" data-placement="right" title="Benjamin studies at ESIEA.
+                He likes to make videos about his travels.">Benjamin</a></div>
+                <div class="panel-body">Videos made by Benjamin
                     <br>
                     {% for article in articlesB %}
                         <div class="title_date"><a href={{ path('bt_blog_viewArticle',{'id':article.id}) }}>{{ article.title }}</a> {{ article.date }}</div>
