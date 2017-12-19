@@ -19,7 +19,7 @@
             <hr>
             <br>
             <div class="article_page_content">
-                {{ article.content }}
+                <p>{{ article.content | nl2br }}</p>
                 <br>
                 <br>
                 {% for media in media %}
@@ -34,7 +34,7 @@
         </div>
 
         <div class="col-md-4">
-            <div> {{ include("BTBlogBundle::viewCommentary.html.twig") }}</div>
+            <div> {{ include("@BTBlogBundle/Resources/Views/viewCommentary.html.twig") }}</div>
         </div>
     </div>
 {% endblock %}

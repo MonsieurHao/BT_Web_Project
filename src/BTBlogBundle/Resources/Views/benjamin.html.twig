@@ -1,7 +1,7 @@
 {% extends "layout.html.twig" %}
 {% block bundle_body %}
 
-    <div class="container-fluid bg-3 text-center">
+    <div class="container-fluid bg-3 text-center" xmlns="http://www.w3.org/1999/html">
         <h4>Benjamin's Page</h4>
         <br>
         <div class="container-fluid_articles">
@@ -13,7 +13,8 @@
                             <div class="information">
                                 <p>This article were posted on {{ article.date}}</p>
                             </div>
-                            <div>{{ article.content }}</div>
+                            <div>{{ article.content | slice(0,50)}} </div>
+                            <a href="{{ path('bt_blog_viewArticle',{'id':article.id}) }}" style="color: rgba(214,226,255,0.58); font-size: large">...</a>
                         </div>
                     </div>
                 {% else %} <div class="article">No article</div>

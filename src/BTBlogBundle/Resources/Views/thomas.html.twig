@@ -14,8 +14,9 @@
                             <div class="information">
                                 <p>This article were posted on {{ article.date}}</p>
                             </div>
-                            <div>{{ article.content }}</div>
-                            </div>
+                            <div>{{ article.content | slice(0,50)}} </div>
+                            <a href="{{ path('bt_blog_viewArticle',{'id':article.id}) }}" style="color: rgba(214,226,255,0.58); font-size: large">...</a>
+                        </div>
                     </div>
                 {% else %} <div class="article">No article</div>
                 {% endfor %}
